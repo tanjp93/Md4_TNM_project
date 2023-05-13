@@ -1,0 +1,89 @@
+.management {
+    width: 98%;
+    padding-top: 70px;
+    margin: auto;
+}
+@media (max-width: 1199px) {
+    .management {
+        width: 98%;
+        padding-top: 70px;
+        padding-bottom: 50px;
+        margin: auto;
+    }
+}
+@media (max-width: 768px) {
+    .management {
+        width: 100%;
+        padding-top: 50px;
+        margin: auto;
+    }
+}
+    @media (max-width: 667px) {
+
+    }
+.management_title h1 {
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.management_option {
+    text-align: center;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.management_option ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.management_option li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.management_option li:last-child {
+    margin-right: 0;
+}
+
+.management_option a {
+    color: #333;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.management_option a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.management_content {
+    padding: 20px;
+}
+
+.management_main_content {
+    margin-bottom: 20px;
+}
+
+.management_main_content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th, table td {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 8px
+}

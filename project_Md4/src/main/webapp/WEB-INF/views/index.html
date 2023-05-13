@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Tân Nhật Minh Glass</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <!-- Favicons -->
+    <link th:href="@{/img/favicon.png}" rel="icon">
+    <link th:href="@{/img/apple-touch-icon.png}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+    <link th:href="@{vendor/fontawesome-free/css/all.min.css}" rel="stylesheet">
+    <link th:href="@{vendor/aos/aos.css}" rel="stylesheet">
+    <link th:href="@{vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
+    <link th:href="@{vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link th:href="@{css/main.css}" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: UpConstruction
+    * Updated: Mar 10 2023 with Bootstrap v5.2.3
+    * Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<header id="header" class="header d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a th:href="@{/home}" class="logo d-flex align-items-center">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- <img src="img/logo.png" alt=""> -->
+            <h1 class="logo-TNM"><img th:src="@{/img/logo/TNM_logo.jpg}" alt=""></h1>
+        </a>
+
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a th:href="@{/home}" class="active">Trang Chủ</a></li>
+                <li><a href="#about">Về Chúng Tôi</a></li>
+                <li class="dropdown"><a href="#"><span>Sản Phẩm</span> <i
+                        class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                        <a href="">Kính Cường Lực</a>
+                        <a href="">Kính Low-E</a>
+                        <a href="">Kính Dán An Toàn</a>
+                        <a href="">Kính Hộp</a>
+                        <a href="">Kính Phun Cát</a>
+                        <a href="">Kính Màu Trang Trí</a>
+                    </ul>
+                </li>
+                <li><a href="#recent-blog-posts">Dự Án</a></li>
+                <li><a href="#get-started">Liên Hệ</a></li>
+                <li class="#navbar_control"><a href="">Quản Lý</a></li>
+                <li><a th:href="@{/formLogin}">Đăng Nhập</a></li>
+            </ul>
+        </nav><!-- .navbar -->
+    </div>
+</header><!-- End Header -->
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero">
+    <div class="info d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2 data-aos="fade-down">Tân Nhật Minh <span>Kính Chào Quý Khách</span></h2>
+                    <p data-aos="fade-up">Đem sản phẩm Kính Cường Lực với chất lượng tốt, khả năng chống chịu lực cơ học
+                        lớn,
+                        tính bền cao, khả năng cách âm, cách nhiệt tốt nhất đến tay quý Khách Hàng .</p>
+                    <a data-aos="fade-up" data-aos-delay="200" href="#main" class="btn-get-started">Xem thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-item active"
+             style="background-image: url(http://localhost:8080/img/hero-carousel/hero-carousel-1.jpg)">
+        </div>
+        <div class="carousel-item"
+             style="background-image: url(http://localhost:8080/img/hero-carousel/hero-carousel-2.jpg)"></div>
+        <div class="carousel-item"
+             style="background-image: url(http://localhost:8080/img/hero-carousel/hero-carousel-3.jpg)"></div>
+        <div class="carousel-item"
+             style="background-image: url(http://localhost:8080/img/hero-carousel/hero-carousel-4.jpg)"></div>
+        <div class="carousel-item"
+             style="background-image: url(http://localhost:8080/img/hero-carousel/hero-carousel-5.jpg)"></div>
+
+        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+    </div>
+</section><!-- End Hero Section -->
+<main id="main">
+    <!-- ======= Constructions Section ======= -->
+    <section id="about" class="constructions">
+        <div class="container" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Về chúng tôi</h2>
+                <p>Hiện nay, Công ty TNHH Thương mại và Sản xuất Đức Thắng là đơn vị chuyên sản xuất kính cường lực,
+                    kính dán
+                    hàng đầu trong khu vực Bắc Miền Trung. Với các sản phẩm đa dạng, chúng tôi cam kết đem lại sự trải
+                    nghiệm
+                    tốt nhất dành cho người tiêu dùng.</p>
+            </div>
+            <div class="row gy-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-item">
+                        <div class="row">
+                            <div class="col-xl-5">
+                                <div class="card-bg"
+                                     style="background-image: url(http://localhost:8080/img/constructions-1.jpg);"></div>
+                            </div>
+                            <div class="col-xl-7 d-flex align-items-center">
+                                <div class="card-body">
+                                    <h4 class="card-title">KINH NGHIỆM </h4>
+                                    <p>&emsp;Gần 20 năm trong thị trường kính đầy biến động, kính an toàn Tân Nhật Minh
+                                        ngày càng khẳng
+                                        định
+                                        mình, đưa thương hiệu kính an toàn DMGlass có độ nhận diện cao đối với khách
+                                        hàng.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-item">
+                        <div class="row">
+                            <div class="col-xl-5">
+                                <div class="card-bg"
+                                     style="background-image: url(http://localhost:8080/img/constructions-2.jpg);"></div>
+                            </div>
+                            <div class="col-xl-7 d-flex align-items-center">
+                                <div class="card-body">
+                                    <h4 class="card-title">CÔNG NGHỆ</h4>
+                                    <p>&emsp;Dây chuyền công nghệ hiện đại của Italy cùng một số nước trên thê giới, với
+                                        nguồn nguyên
+                                        liệu của
+                                        Công ty liên doanh Kính nổi tiếng Việt Nam CFG, ngoài ra phôi còn nhập khẩu từ
+                                        Trung Quốc, Thái
+                                        Lan, Indonesia…</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-item">
+                        <div class="row">
+                            <div class="col-xl-5">
+                                <div class="card-bg"
+                                     style="background-image: url(http://localhost:8080/img/constructions-3.jpg);"></div>
+                            </div>
+                            <div class="col-xl-7 d-flex align-items-center">
+                                <div class="card-body">
+                                    <h4 class="card-title">NHÂN SỰ</h4>
+                                    <p>&emsp;Lấy sự hài lòng của khách hàng làm kim chỉ nam trong vận hành bộ máy quản
+                                        lý cũng như đội
+                                        ngũ sản
+                                        xuất, chúng tôi cam kết giải đáp mọi thắc mắc, phản hồi đối với sản phẩm, gửi
+                                        tới khách hàng những
+                                        sản phẩm tốt nhất.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-item">
+                        <div class="row">
+                            <div class="col-xl-5">
+                                <div class="card-bg"
+                                     style="background-image: url(http://localhost:8080/img/constructions-4.jpg);"></div>
+                            </div>
+                            <div class="col-xl-7 d-flex align-items-center">
+                                <div class="card-body">
+                                    <h4 class="card-title">VẬN CHUYỂN</h4>
+                                    <p>&emsp;Ngoài dây chuyền công nghệ và hệ thống quản lý, vận tải cũng được đầu tư
+                                        mạnh để phục vụ
+                                        khách
+                                        hàng và công trình trên khắp cả nước. Đội ngũ giao hàng được đào tạo chuyên
+                                        nghiệp, giao hàng đúng
+                                        tiến độ.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Card Item -->
+
+            </div>
+
+        </div>
+    </section><!-- End Constructions Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Quy Trình Sản Xuất</h2>
+                <p>Kính Tân Nhật Minh đã, đang, và sẽ không ngừng nâng cao chất lượng sản phẩm nhằm đáp ứng yêu cầu thị
+                    trường trong và ngoài nước ngày một gia tăng.</p>
+            </div>
+
+            <div class="row gy-4">
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-item  position-relative">
+                        <div class="icon">
+                            <i class="fa-solid fa-mountain-city"></i>
+                        </div>
+                        <h3>Tiếp Nhận Đơn Hàng</h3>
+                        <p style="display: flex;flex-direction: column;">Để đặt hàng hoặc nhận tư vấn, Quý Khách vui
+                            lòng liên hệ
+                            HotLine của chúng tôi :
+                            <span><span style="font-weight: bold;">SDT1 : </span> <span>0921-881-333 .</span></span>
+                            <span><span style="font-weight: bold;">SDT2 : </span> <span>0966-092-333 .</span></span>
+                            <span><span style="font-weight: bold;">SDT3 : </span> <span>0984-627-696 .</span></span>
+                            Hoặc <span><span style="font-weight: bold;">Email : </span> <span>tannhatminhglass@gmail.com
+                    .</span></span>
+                        </p>
+                        <a href="" class="readmore stretched-link">Xem thêm <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-item position-relative">
+                        <div class="icon">
+                            <i class="fa-solid fa-arrow-up-from-ground-water"></i>
+                        </div>
+                        <h3>Cắt Kính</h3>
+                        <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic
+                            non ut
+                            nesciunt dolorem.</p>
+                        <a href="" class="readmore stretched-link">Xem thêm <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-item position-relative">
+                        <div class="icon">
+                            <i class="fa-solid fa-compass-drafting"></i>
+                        </div>
+                        <h3>Mài Kính</h3>
+                        <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas
+                            adipisci
+                            eos earum corrupti.</p>
+                        <a href="" class="readmore stretched-link">Xem thêm <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-item position-relative">
+                        <div class="icon">
+                            <i class="fa-solid fa-trowel-bricks"></i>
+                        </div>
+                        <h3>Khoan Khoét Và Rửa</h3>
+                        <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit
+                            provident
+                            adipisci neque.</p>
+                        <a href="" class="readmore stretched-link">Xem thêm <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-item position-relative">
+                        <div class="icon">
+                            <i class="fa-solid fa-helmet-safety"></i>
+                        </div>
+                        <h3>Tôi Kính</h3>
+                        <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi
+                            at autem
+                            alias eius labore.</p>
+                        <a href="" class="readmore stretched-link">Xem thêm <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div><!-- End Service Item -->
+
+                <!-- <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                  <div class="service-item position-relative">
+                    <div class="icon">
+                      <i class="fa-solid fa-arrow-up-from-ground-water"></i>
+                    </div>
+                    <h3>Dolori Architecto</h3>
+                    <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti
+                      recusandae ducimus enim.</p>
+                    <a href="service-details.html" class="readmore stretched-link">Xem thêm <i
+                        class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div>End Service Item -->
+
+            </div>
+
+        </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Alt Services Section ======= -->
+    <section id="alt-services" class="alt-services">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row justify-content-around gy-4">
+                <div class="col-lg-6 img-bg" style="background-image: url(http://localhost:8080/img/alt-services.jpg);"
+                     data-aos="zoom-in"
+                     data-aos-delay="100"></div>
+                <div class="col-lg-5 d-flex flex-column justify-content-center">
+                    <h3>UY TÍN TẠO NÊN THƯƠNG HIỆU</h3>
+                    <p>Mặt hàng kính cường lực là mặt hàng tuy mới lạ nhưng càng ngày lại có độ phổ biến cao với sự hữu
+                        dụng của
+                        nó. Kính cường lực Tân Nhật Minh mang đến một hơi thở mới, đặc tính trang trí tân tiến và những
+                        hữu dụng
+                        mà nó đem lại. Nó như làm thay đổi cách suy nghĩ và xu hướng sử dụng vật liệu xây dựng trong
+                        thiết kế và
+                        trang trí nội thất ngày nay.</p>
+
+                    <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
+                        <i class="bi bi-easel flex-shrink-0"></i>
+                        <div>
+                            <h4><a href="" class="stretched-link">QUY MÔ SẢN XUẤT</a></h4>
+                            <p>Kính cường lực: hơn 500.000m/ năm </p>
+                            <p>Kính dán : hơn 1.000.000 m/ năm </p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                    <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
+                        <i class="bi bi-patch-check flex-shrink-0"></i>
+                        <div>
+                            <h4><a href="" class="stretched-link">Công Nghệ Hiện Đại</a></h4>
+                            <p>Dây chuyền công nghệ hiện đại của Italy cùng một số nước trên thê giới, với nguồn nguyên
+                                liệu của
+                                Công ty liên doanh Kính nổi tiếng Việt Nam CFG, ngoài ra phôi còn nhập khẩu từ Trung
+                                Quốc, Thái Lan,
+                                Indonesia…</p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                    <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
+                        <i class="bi bi-brightness-high flex-shrink-0"></i>
+                        <div>
+                            <h4><a href="" class="stretched-link">Tận Tâm </a></h4>
+                            <p>Luôn đặt chữ Tin làm đầu</p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                    <!-- <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
+                      <i class="bi bi-brightness-high flex-shrink-0"></i>
+                      <div>
+                        <h4><a href="" class="stretched-link">Tride clov</a></h4>
+                        <p>Est voluptatem labore deleniti quis a delectus et. Saepe dolorem libero sit non aspernatur odit amet.
+                          Et eligendi</p>
+                      </div>
+                    </div>End Icon Box -->
+
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End Alt Services Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section class="features section-bg">
+        <div id="features">
+            <div class="container" data-aos="fade-up">
+                <ul class="nav nav-tabs row  g-2 d-flex">
+                    <li class="nav-item col-4">
+                        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
+                            <h4>Kính Cường Lực</h4>
+                        </a>
+                    </li><!-- End tab nav item -->
+
+                    <li class="nav-item col-4">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-2">
+                            <h4>Kính Low-E</h4>
+                        </a><!-- End tab nav item -->
+
+                    <li class="nav-item col-4">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-3">
+                            <h4> Kính Dán An Toàn</h4>
+                        </a>
+                    </li><!-- End tab nav item -->
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active show" id="tab-1">
+                        <div class="row">
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center"
+                                 data-aos="fade-up" data-aos-delay="100">
+                                <h3>UY TÍN TẠO NÊN THƯƠNG HIỆU</h3>
+                                <p class="fst-italic">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore
+                                    et
+                                    dolore
+                                    magna aliqua.
+                                </p>
+                                <ul>
+                                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in
+                                        voluptate velit.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis
+                                        aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro
+                                        dolore eu fugiat
+                                        nulla
+                                        pariatur.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up"
+                                 data-aos-delay="200">
+                                <img th:src="@{img/features-1.jpg}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!-- End tab content item -->
+
+                    <div class="tab-pane" id="tab-2">
+                        <div class="row">
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                                <h3>Neque exercitationem debitis</h3>
+                                <p class="fst-italic">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore
+                                    et
+                                    dolore
+                                    magna aliqua.
+                                </p>
+                                <ul>
+                                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in
+                                        voluptate velit.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Provident mollitia neque rerum asperiores
+                                        dolores quos qui a.
+                                        Ipsum neque dolor voluptate nisi sed.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis
+                                        aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro
+                                        dolore eu fugiat
+                                        nulla
+                                        pariatur.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center">
+                                <img th:src="@{img/features-2.jpg}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!-- End tab content item -->
+
+                    <div class="tab-pane" id="tab-3">
+                        <div class="row">
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                                <h3>Voluptatibus commodi accusamu</h3>
+                                <ul>
+                                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in
+                                        voluptate velit.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Provident mollitia neque rerum asperiores
+                                        dolores quos qui a.
+                                        Ipsum neque dolor voluptate nisi sed.
+                                    </li>
+                                </ul>
+                                <p class="fst-italic">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore
+                                    et
+                                    dolore
+                                    magna aliqua.
+                                </p>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center">
+                                <img th:src="@{img/features-3.jpg}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!-- End tab content item -->
+                </div>
+            </div>
+        </div><!-- End Features Section -->
+        <!-- ======= Our Projects Section ======= -->
+
+        <!-- ======= Features Section ======= -->
+        <div>
+            <div class="container" data-aos="fade-up">
+                <ul class="nav nav-tabs row  g-2 d-flex">
+                    <li class="nav-item col-4">
+                        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-5">
+                            <h4>Kính Hộp</h4>
+                        </a>
+                    </li><!-- End tab nav item -->
+
+                    <li class="nav-item col-4">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-6">
+                            <h4>Kính Phun Cát</h4>
+                        </a><!-- End tab nav item -->
+
+                    <li class="nav-item col-4">
+                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-7">
+                            <h4> Kính Màu Trang Trí-Kính Ốp Bếp</h4>
+                        </a>
+                    </li><!-- End tab nav item -->
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active show" id="tab-5">
+                        <div class="row">
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center"
+                                 data-aos="fade-up" data-aos-delay="100">
+                                <h3>UY TÍN TẠO NÊN THƯƠNG HIỆU</h3>
+                                <p class="fst-italic">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore
+                                    et
+                                    dolore
+                                    magna aliqua.
+                                </p>
+                                <ul>
+                                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in
+                                        voluptate velit.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis
+                                        aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro
+                                        dolore eu fugiat
+                                        nulla
+                                        pariatur.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up"
+                                 data-aos-delay="200">
+                                <img th:src="@{img/features-1.jpg}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!-- End tab content item -->
+
+                    <div class="tab-pane" id="tab-6">
+                        <div class="row">
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                                <h3>Neque exercitationem debitis</h3>
+                                <p class="fst-italic">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore
+                                    et
+                                    dolore
+                                    magna aliqua.
+                                </p>
+                                <ul>
+                                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in
+                                        voluptate velit.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Provident mollitia neque rerum asperiores
+                                        dolores quos qui a.
+                                        Ipsum neque dolor voluptate nisi sed.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis
+                                        aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro
+                                        dolore eu fugiat
+                                        nulla
+                                        pariatur.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center">
+                                <img th:src="@{img/features-2.jpg}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!-- End tab content item -->
+                    <div class="tab-pane" id="tab-7">
+                        <div class="row">
+                            <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
+                                <h3>Voluptatibus commodi accusamu</h3>
+                                <ul>
+                                    <li><i class="bi bi-check2-all"></i> Ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Duis aute irure dolor in reprehenderit in
+                                        voluptate velit.
+                                    </li>
+                                    <li><i class="bi bi-check2-all"></i> Provident mollitia neque rerum asperiores
+                                        dolores quos qui a.
+                                        Ipsum neque dolor voluptate nisi sed.
+                                    </li>
+                                </ul>
+                                <p class="fst-italic">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore
+                                    et
+                                    dolore
+                                    magna aliqua.
+                                </p>
+                            </div>
+                            <div class="col-lg-6 order-1 order-lg-2 text-center">
+                                <img th:src="@{img/features-3.jpg}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!-- End tab content item -->
+                </div>
+            </div>
+        </div><!-- End Features Section -->
+    </section>
+
+    <!-- ======= Our Projects Section ======= -->
+    <section id="projects" class="projects">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Kính An Toàn Tân Nhật Minh</h2>
+                <p>Các sản phẩm của chúng tôi tuân thủ nghiêm ngặt các tiêu chuẩn quản lý chất lượng ISO 9001: 2015
+                    trong từng
+                    công đoạn sản xuất cùng các tiêu chuẩn JIS, ANSI, EN.</p>
+            </div>
+
+            <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
+                 data-portfolio-sort="original-order">
+
+                <ul class="portfolio-flters" data-aos="fade-up" data-aos-delay="100">
+                    <li data-filter="*" class="filter-active">Tất Cả</li>
+                    <li data-filter=".filter-remodeling">Kết Quả thử Nghiệm</li>
+                    <li data-filter=".filter-construction">Chứng Nhận hợp chuẩn hợp quy</li>
+                    <li data-filter=".filter-repairs">Chứng Nhận ISO</li>
+                    <li data-filter=".filter-design">Design</li>
+                </ul><!-- End Projects Filters -->
+
+                <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
+                        <div class="portfolio-content h-100">
+                            <img th:src="@{img/projects/remodeling-1.jpg}" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Remodeling 1</h4>
+                                <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                <a th:href="@{img/projects/remodeling-1.jpg}" title="Remodeling 1"
+                                   data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i
+                                        class="bi bi-zoom-in"></i></a>
+                                <a href="" title="More Details" class="details-link"><i
+                                        class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- End Projects Item -->
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-construction">
+                        <div class="portfolio-content h-100">
+                            <img th:src="@{img/projects/construction-1.jpg}" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Construction 1</h4>
+                                <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                <a th:href="@{img/projects/construction-1.jpg}" title="Construction 1"
+                                   data-gallery="portfolio-gallery-construction" class="glightbox preview-link"><i
+                                        class="bi bi-zoom-in"></i></a>
+                                <a href="" title="More Details" class="details-link"><i
+                                        class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- End Projects Item -->
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
+                        <div class="portfolio-content h-100">
+                            <img th:src="@{img/projects/repairs-1.jpg}" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Repairs 1</h4>
+                                <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                <a th:href="@{img/projects/repairs-1.jpg}" title="Repairs 1"
+                                   data-gallery="portfolio-gallery-repairs"
+                                   class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="" title="More Details" class="details-link"><i
+                                        class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- End Projects Item -->
+
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-design">
+                        <div class="portfolio-content h-100">
+                            <img th:src="@{img/projects/design-1.jpg}" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>Design 1</h4>
+                                <p>Lorem ipsum, dolor sit amet consectetur</p>
+                                <a th:href="@{img/projects/design-1.jpg}" title="Repairs 1"
+                                   data-gallery="portfolio-gallery-book"
+                                   class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                                <a href="" title="More Details" class="details-link"><i
+                                        class="bi bi-link-45deg"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- End Projects Item -->
+                </div><!-- End Projects Container -->
+            </div>
+        </div>
+    </section><!-- End Our Projects Section -->
+
+
+    <!-- ======= Recent Blog Posts Section ======= -->
+    <section id="recent-blog-posts" class="recent-blog-posts">
+        <div class="container" data-aos="fade-up">
+            <div class=" section-header">
+                <h2>Công Trình Của Chúng Tôi</h2>
+                <p>Một Số Công Trình Sử Dụng Sản Phẩm Của Chúng Tôi</p>
+            </div>
+            <div class="row gy-5">
+                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="post-item position-relative h-100">
+                        <div class="post-img position-relative overflow-hidden">
+                            <img src="img/blog/blog-1.jpg" class="img-fluid" alt="">
+                            <span class="post-date">Tháng 12</span>
+                        </div>
+                        <div class="post-content d-flex flex-column">
+                            <h3 class="post-title">Kính Bếp Trang Trí</h3>
+                            <div class="meta d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-sharp fa-solid fa-location-dot"></i>&emsp;Nghệ An
+                                </div>
+                                <span class="px-3 text-black-50">/</span>
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-folder2"></i> <span class="ps-2">Kính Màu Trang Trí</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <a href="" class="readmore stretched-link"><span>Xem Thêm</span><i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div><!-- End post item -->
+            </div>
+
+        </div>
+    </section>
+    <!-- End Recent Blog Posts Section -->
+    <!-- ======= Get Started Section ======= -->
+    <section id="get-started" class="get-started section-bg">
+        <div class="container">
+            <div class="row justify-content-between gy-4">
+
+                <div class="col-lg-6 d-flex align-items-center" data-aos="fade-up">
+                    <div class="content">
+                        <h3>Liên hệ Tư Vấn</h3>
+                        <p>
+                            <span style="font-weight: bold;">Tổng đài chăm sóc : </span>
+                            <span> &ensp;0921-881-333</span> &ensp;/ &ensp;
+                            <span>0966-092-333</span> &ensp;/ &ensp;
+                            <span>0984-627-696</span>
+                        <p>
+                            <span style="font-weight: bold;">Email :</span>
+                            <span> &ensp; tannhatminhglass@gmail.com</span>
+                        </p>
+                        <p style="display: flex;flex-direction: column;">
+                            <span> &emsp;Tân Nhật Minh cảm ơn quý khách đã tin tưởng.</span>
+                            <span> &emsp;Yêu cầu của Quý Khách sẽ được gửi đến Phòng Kinh Doanh.</span>
+                            <span> &emsp;Chúng tôi sẽ sớm liên hệ lại với quý Khách Hàng !</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-5" data-aos="fade">
+                    <form action="forms/quote.php" method="post" class="php-email-form">
+                        <h3>Phiếu Liên hệ tư vấn</h3>
+                        <div class="row gy-3">
+                            <form method="POST" action="https://formspree.io/buitan561993@gmail.com">
+                                <div class="col-md-12">
+                                    <input type="text" name="name" class="form-control"
+                                           placeholder="Anh / Chị ................. "
+                                           required>
+                                </div>
+
+                                <div class="col-md-12 ">
+                                    <input type="email" class="form-control" name="email"
+                                           placeholder="Email ................."
+                                           required>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" name="phone"
+                                           placeholder="Số điện thoại liên hệ ................." required>
+                                </div>
+
+                                <div class="col-md-12">
+                    <textarea class="form-control" name="message" rows="6"
+                              placeholder="Nội dung , Sản Phẩm quan tâm .................................."
+                              required></textarea>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <div class="loading">Loading</div>
+                                    <div class="error-message"></div>
+                                    <div class="sent-message">Yêu Cầu của Quý Khách đã được gửi đi . Xin chân thành Cảm
+                                        Ơn!
+                                    </div>
+                                    <button type="submit">Gửi Yêu Cầu</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </form>
+                </div><!-- End Quote Form -->
+
+            </div>
+
+        </div>
+    </section><!-- End Get Started Section -->
+
+</main><!-- End #main -->
+<th:block th:insert="/components/footer :: footerForm"></th:block>
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script th:src="@{vendor/aos/aos.js}"></script>
+<script th:src="@{vendor/glightbox/js/glightbox.min.js}"></script>
+<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+<script th:src="@{vendor/swiper/swiper-bundle.min.js}"></script>
+<script th:src="@{vendor/purecounter/purecounter_vanilla.js}"></script>
+<script th:src="@{vendor/php-email-form/validate.js}"></script>
+
+<!-- Template Main JS File -->
+<script th:src="@{js/main.js}"></script>
+
+</body>
+
+</html>

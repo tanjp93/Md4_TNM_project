@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--  <link rel="stylesheet" href="css/reset.css">-->
+    <link rel="stylesheet" th:href="@{css/loginStyle.css}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+
+    <title>Form login unitop.vn</title>
+</head>
+<body>
+<div id="wrapper">
+    <form action="/register" id="form-login" method="post">
+        <h1 class="form-heading">Đăng Ký</h1>
+        <div class="form-group">
+            <i class="far fa-user"></i>
+            <input type="text" class="form-input" name="userName" placeholder="Tên đăng nhập">
+            <span style="color:red;" th:text="${userErr}"></span>
+        </div>
+        <div class="form-group">
+            <i class="fas fa-key"></i>
+            <input type="password" class="form-input" name="password" placeholder="Mật khẩu">
+            <div class="eye">
+                <i class="far fa-eye"></i>
+            </div>
+            <span style="color:red;" th:text="${passwordErr}"></span>
+        </div>
+        <div class="form-group">
+            <i class="fas fa-key"></i>
+            <input type="password" class="form-input" name="rePassword" placeholder="Nhập lại mật khẩu">
+            <div class="eye">
+                <i class="far fa-eye"></i>
+            </div>
+            <span style="color:red;" th:text="${rePasswordErr}"></span>
+        </div>
+        <span style="color:red;" th:text="${checkFinal}"></span>
+        <button type="submit" class="form-submit">Đăng Kí</button>
+        <div class="redirectAnotherPage" >
+            <a th:href="@{/formLogin}" style="text-decoration: none; color: #fff" href=""><p>Đăng nhập</p></a>
+            <a th:href="@{/}" style="text-decoration: none ; color: #fff"><p>Quay về trang chủ</p></a>
+        </div>
+
+    </form>
+    <div>
+    </div>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script th:src="@{js/showPassword.js}"></script>
+</html>

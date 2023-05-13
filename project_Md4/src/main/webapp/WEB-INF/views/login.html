@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--  <link rel="stylesheet" href="css/reset.css">-->
+    <link rel="stylesheet" th:href="@{css/loginStyle.css}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+
+    <title>Form login unitop.vn</title>
+</head>
+<body>
+<div id="wrapper">
+    <form action="login" id="form-login" method="post">
+        <h1 class="form-heading">Đăng Nhập</h1>
+        <div class="form-group">
+            <i class="far fa-user"></i>
+            <input type="text" class="form-input" name="userName" placeholder="Tên đăng nhập">
+            <span th:href="${userLoginErr}"></span>
+        </div>
+        <div class="form-group">
+            <i class="fas fa-key"></i>
+            <input type="password" class="form-input" name="password" placeholder="Mật khẩu">
+            <div class="eye">
+                <i class="far fa-eye"></i>
+            </div>
+            <span th:href="${passwordLoginErr}"></span>
+        </div>
+        <span th:href="${loginErr}"></span>
+        <button type="submit" class="form-submit">Đăng nhập</button>
+        <div class="redirectAnotherPage">
+            <a th:href="@{/formRegister}" style="text-decoration: none; color: #fff" href=""><p>Đăng ký</p></a>
+            <a th:href="@{/}" style="text-decoration: none ; color: #fff"><p>Quay về trang chủ</p></a>
+        </div>
+    </form>
+</div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script th:src="@{js/showPassword.js}"></script>
+</html>
