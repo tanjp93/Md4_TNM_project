@@ -1,11 +1,14 @@
 package ra.model.entity;
 
+import java.util.Date;
+
 public class Order {
-    private int OrderId;
+    private int id;
     private int userId;
     private int productId;
     private int quantity;
     private long oderPay;
+    private Date orderTime;
 
     public Order() {
     }
@@ -16,20 +19,21 @@ public class Order {
         this.quantity = quantity;
     }
 
-    public Order(int OrderId, int userId, int productId, int quantity) {
-        this.OrderId = OrderId;
+    public Order(int id, int userId, int productId, int quantity, long oderPay, Date orderTime) {
+        this.id = id;
         this.userId = userId;
         this.productId = productId;
         this.quantity = quantity;
-//        this.oderPay = oderPay;
+        this.oderPay = oderPay;
+        this.orderTime = orderTime;
     }
 
-    public int getOrderId() {
-        return OrderId;
+    public int getId() {
+        return id;
     }
 
-    public void setOrderId(int orderId) {
-        this.OrderId = orderId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUserId() {
@@ -64,14 +68,23 @@ public class Order {
         this.oderPay = oderPay;
     }
 
+    public Date getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(Date orderTime) {
+        this.orderTime = orderTime;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
-                "id=" + OrderId +
+                "id=" + id +
                 ", userId=" + userId +
                 ", productId=" + productId +
                 ", quantity=" + quantity +
                 ", oderPay=" + oderPay +
+                ", orderTime=" + orderTime +
                 '}';
     }
 }

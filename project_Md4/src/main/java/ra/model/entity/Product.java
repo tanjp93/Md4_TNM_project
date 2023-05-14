@@ -3,11 +3,11 @@ package ra.model.entity;
 public class Product {
 private  int id;
 private String productName;
-private int categoryId;
-private long price;
-private  int stoke;
-private String title;
-private String img;
+private int categoryId; //
+private long price; //
+private  int stoke; //
+private String title; //
+private String img; //
 private String description1;
 private String description2;
 private String description3;

@@ -37,8 +37,8 @@
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
 </head>
-<body>
-
+<body >
+<!--<div th:if="${session.userLogin.}"></div>-->
 <th:block th:insert="/components/header :: headerForm"></th:block>
 <main id="main">
     <!-- ======= Breadcrumbs ======= -->
@@ -54,50 +54,24 @@
     </div><!-- End Breadcrumbs -->
 </main>
 <section class="management">
-    <header class="management_title">
-        <h1>Product Management</h1>
-    </header>
     <nav class="management_option">
         <ul>
-            <li><a href="#">User</a></li>
-            <li><a href="#">Sản Phẩm</a></li>
-            <li><a href="#">Đơn Hàng</a></li>
+            <li><a href="/manageController?action=displayUser" th:class="${displayUser != null ? 'choice_active' : ''}">User</a>
+            </li>
+            <li><a href="/manageController?action=displayPro" th:class="${displayPro != null ? 'choice_active' : ''}">Sản
+                Phẩm</a></li>
+            <li><a href="/manageController?action=displayOrder" th:class="${displayOrder != null ? 'choice_active' : ''}">Đơn Hàng</a></li>
+            <li><a href="/manageController?action=displayCertificate" th:class="${displayCertificate != null ? 'choice_active' : ''}">Chứng Chỉ</a></li>
         </ul>
     </nav>
-    <div class="management_main">
-        <div class="management_main_content">
-            <h2>Products</h2>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Product 1</td>
-                        <td>A great product</td>
-                        <td>$19.99</td>
-                        <td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Product 2</td>
-                        <td>Another great product</td>
-                        <td>$29.99</td>
-                        <td><a href="#">Edit</a> | <a href="#">Delete</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+    <!--    user-->
+    <th:block th:if="${displayUser != null}" th:insert="/components/usersComponent :: userTable"></th:block>
+    <!--    product-->
+    <th:block th:if="${displayPro != null}" th:insert="/components/productsComponent :: productTable"></th:block>
+    <th:block th:if="${displayPro != null}" th:insert="/components/listOrderComponent :: listOrderTable"></th:block>
+    <th:block th:if="${displayPro != null}" th:insert="/components/certificatesComponent :: certificatesTable"></th:block>
+    <th:block th:if="${createProduct != null}" th:insert="/components/formAddProduct :: formAddProduct"></th:block>
+
 </section>
 <th:block th:insert="/components/footer :: footerForm"></th:block>
 <!---->

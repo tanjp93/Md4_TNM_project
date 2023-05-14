@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div th:fragment="certificatesTable" class="management_main">
+  <div class="management_main_content">
+    <h2>Certificates</h2>
+    <div style="margin-bottom: 20px;color: #1a1e21">
+      <a href="" style="text-decoration: none" th:class="addContent"> Add Certificates </a>
+    </div>
+    <div class="table-responsive">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Category</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr  th:each="certificate:${certificates}">
+          <td th:text="${certificates.getId()}"></td>
+          <td th:text="${certificates.getCertificates()}"></td>
+          <td >A great product</td>
+          <td th:text="${product.getPrice()+' VND'}"></td>
+          <td><a href="#">Edit</a> | <a href="#">Delete</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

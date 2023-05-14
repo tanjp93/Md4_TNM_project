@@ -41,39 +41,7 @@
 <body>
 
 <!-- ======= Header ======= -->
-<header id="header" class="header d-flex align-items-center">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-        <a th:href="@{/home}" class="logo d-flex align-items-center">
-            <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="img/logo.png" alt=""> -->
-            <h1 class="logo-TNM"><img th:src="@{/img/logo/TNM_logo.jpg}" alt=""></h1>
-        </a>
-
-        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a th:href="@{/home}" class="active">Trang Chủ</a></li>
-                <li><a href="#about">Về Chúng Tôi</a></li>
-                <li class="dropdown"><a href="#"><span>Sản Phẩm</span> <i
-                        class="bi bi-chevron-down dropdown-indicator"></i></a>
-                    <ul>
-                        <a href="">Kính Cường Lực</a>
-                        <a href="">Kính Low-E</a>
-                        <a href="">Kính Dán An Toàn</a>
-                        <a href="">Kính Hộp</a>
-                        <a href="">Kính Phun Cát</a>
-                        <a href="">Kính Màu Trang Trí</a>
-                    </ul>
-                </li>
-                <li><a href="#recent-blog-posts">Dự Án</a></li>
-                <li><a href="#get-started">Liên Hệ</a></li>
-                <li class="#navbar_control"><a href="">Quản Lý</a></li>
-                <li><a th:href="@{/formLogin}">Đăng Nhập</a></li>
-            </ul>
-        </nav><!-- .navbar -->
-    </div>
-</header><!-- End Header -->
+<th:block th:insert="/components/header :: headerForm"></th:block>
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero">
     <div class="info d-flex align-items-center">
@@ -107,7 +75,6 @@
         <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
         </a>
-
         <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
             <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
         </a>
@@ -840,12 +807,6 @@
 
 </main><!-- End #main -->
 <th:block th:insert="/components/footer :: footerForm"></th:block>
-
-<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
-
-<div id="preloader"></div>
-
 <!-- Vendor JS Files -->
 <script th:src="@{vendor/aos/aos.js}"></script>
 <script th:src="@{vendor/glightbox/js/glightbox.min.js}"></script>

@@ -6,40 +6,54 @@
 </head>
 <body>
 <header th:fragment="headerForm">
-  <div id="header" class="header d-flex align-items-center">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    <div id="header" class="header d-flex align-items-center">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="logo-TNM"><img th:src="@{/img/logo/TNM_logo.jpg}" alt=""></h1>
-      </a>
+            <a th:href="@{/}" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <h1 class="logo-TNM"><img th:src="@{/img/logo/TNM_logo.jpg}" alt=""></h1>
+            </a>
 
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a th:href="@{/home}" class="active">Trang Chủ</a></li>
-          <li><a href="#about">Về Chúng Tôi</a></li>
-          <li class="dropdown"><a href="#"><span>Sản Phẩm</span> <i
-                  class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <a href="">Kính Cường Lực</a>
-              <a href="">Kính Low-E</a>
-              <a href="">Kính Dán An Toàn</a>
-              <a href="">Kính Hộp</a>
-              <a href="">Kính Phun Cát</a>
-              <a href="">Kính Màu Trang Trí</a>
-            </ul>
-          </li>
-          <li><a href="#recent-blog-posts">Dự Án</a></li>
-          <li><a href="#get-started">Liên Hệ</a></li>
-          <li class="#navbar_control"><a href="">Quản Lý</a></li>
-          <li><a th:href="@{/formLogin}">Đăng Nhập</a></li>
-        </ul>
-      </nav><!-- .navbar -->
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="/home?action=home" th:class="${home!=null?'active':''}">Trang Chủ</a></li>
+                    <li><a href="#about">Về Chúng Tôi</a></li>
+                    <li class="dropdown"><a href="#"><span>Sản Phẩm</span>
+                        <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <a href="">Kính Cường Lực</a>
+                            <a href="">Kính Low-E</a>
+                            <a href="">Kính Dán An Toàn</a>
+                            <a href="">Kính Hộp</a>
+                            <a href="">Kính Phun Cát</a>
+                            <a href="">Kính Màu Trang Trí</a>
+                        </ul>
+                    </li>
+                    <li><a href="#recent-blog-posts">Dự Án</a></li>
+                    <li><a href="#get-started">Liên Hệ</a></li>
+                    <li th:if="${session.userLogin != null && session.userLogin.getRole()=='admin'}"><a th:href="@{/manageController}"><span>Quản Lý</span></a></li>
+                    <li class="dropdown" th:if="${session.userLogin==null}"><a href="#"><span>Đăng Nhập</span>
+                        <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <a th:href="@{/formLogin}">Đăng Nhập</a>
+                            <a th:href="@{/formRegister}">Đăng Kí</a>
+                        </ul>
+                    </li>
+                    <li class="dropdown" th:if="${session.userLogin != null}">
+                        <a href="#"><span th:text="${session.userLogin.getUserName()}"></span>
+                            <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <a href="">Thông tin cá nhân</a>
+                            <a th:href="@{/logOut}">LogOut</a>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
-  </div>
-</header><!-- End Header -->
+</header>
 </body>
 </html>

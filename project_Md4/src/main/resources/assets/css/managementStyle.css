@@ -1,3 +1,20 @@
+/*header*/
+.navbar-option{
+    color: rgba(255, 255, 255, 0.6);
+}
+.navbar-option:hover{
+    color: #fff;
+    background-color: var(--color-primary);
+}
+.addContent{
+    color: rgb(54,77,89)!important;
+    font-size: 20px!important;
+}
+
+.addContent:hover{
+    background-color: var(--color-primary);
+}
+
 .management {
     width: 98%;
     padding-top: 70px;
@@ -47,6 +64,9 @@
 
 .management_option li:last-child {
     margin-right: 0;
+}
+.choice_active {
+    color: #feb900 !important;
 }
 
 .management_option a {

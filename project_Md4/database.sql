@@ -5,6 +5,7 @@ create table Category(
 id int primary key auto_increment,
 categoryName varchar(255) not null
 );
+
 create table `User`(
  id int primary key auto_increment,
  userName varchar(255) not null ,
@@ -33,12 +34,14 @@ description5 varchar(255),
 foreign key(categoryId) references Category(id)
 );
 
+
 create table `order`(
 id int primary key auto_increment,
 userId int not null ,
 productId int not null ,
 quantity int not null ,
 oderPay long,
+orderTime Date,
 foreign key (userId) references `User`(id),
 foreign key (productId) references product(id)
 );
@@ -96,3 +99,38 @@ end //
 delimiter ;
 
 insert into user (userName, password,role) values ("admin", "admin","admin");
+insert into Category (categoryName) values ("Kính Cường Lực"), ("Kính An Toàn");
+insert into product(productName,categoryId,price,stoke) 
+values 
+('kinh cuong luc',1,120000,200),
+('Kính Low-E',2,200000,200),
+('Kính Dán An Toàn',2,250000,200);
+delimiter //
+create procedure  PROC_findProductByName(productName varchar(255))
+begin
+    select * from product where productName like concat('%'+productName+'%');
+end //
+use md4_project_javaspring_tnmglass;
+delimiter //
+create PROCEDURE  PROC_Category_GetAll()
+begin
+    select * from category ;
+end //
+
+create PROCEDURE  PROC_Category_findById(idFind int)
+begin
+    select * from category where id=idFind;
+end //
+create PROCEDURE PROC_Category_save (newCategoryName varchar(255))
+begin
+    insert into category(categoryName) values (newCategoryName);
+end //
+create  PROCEDURE  PROC_Category_update(idUpdate int, categoryUpdate varchar(255))
+begin
+    UPDATE category set  categoryName=categoryUpdate where id=idUpdate;
+end //
+
+create  PROCEDURE PROC_Category_delete(idDel int)
+begin
+    delete from category where id=idDel;
+end //

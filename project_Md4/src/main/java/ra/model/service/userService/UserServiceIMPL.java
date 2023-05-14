@@ -84,7 +84,7 @@ public class UserServiceIMPL implements IUserService {
     }
 
     @Override
-    public User findById(Integer userId) {
+    public User findById(int userId) {
         Connection conn = null;
         User user = new User();
         try {
@@ -111,7 +111,7 @@ public class UserServiceIMPL implements IUserService {
     }
 
     @Override
-    public boolean delete(Integer userId) {
+    public boolean delete(int userId) {
         Connection conn = null;
         try {
             conn = ConnectionToDB.getConnectionToDB();

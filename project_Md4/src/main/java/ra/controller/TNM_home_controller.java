@@ -16,8 +16,23 @@ public class TNM_home_controller {
     IUserService userService = new UserServiceIMPL();
 
     @GetMapping({"/", "/home"})
-    public String backHome() {
-        return "index";
+    public String backHome(HttpServletRequest request, Model model) {
+        String action = request.getParameter("action");
+        if (action==null){
+            action="home";
+        }
+        switch (action) {
+            case "home":
+                model.addAttribute("home","backToHome");
+                return "index";
+            case "manage":
+                model.addAttribute("manage","manage");
+                return "manageController";
+            default:
+                model.addAttribute("home","backToHome");
+                return "index";
+        }
+
     }
 
     @GetMapping("/formLogin")
@@ -79,12 +94,17 @@ public class TNM_home_controller {
             model.addAttribute("loginErr", "Tên đăng nhập hoặc mật khẩu không chính xác !");
             return "/login";
         } else {
-            request.getSession().setAttribute("userLogin",userLogin);
-            if (userLogin.getRole().equals("admin")||userLogin.getRole().equals("manager")){
+            request.getSession().setAttribute("userLogin", userLogin);
+            if (userLogin.getRole().equals("admin") || userLogin.getRole().equals("manager")) {
                 return "redirect:/manageController";
-            }else {
-            return "redirect:/";
+            } else {
+                return "redirect:/";
             }
         }
+    }
+    @GetMapping("/logOut")
+    public String logout(HttpServletRequest request){
+        request.getSession().removeAttribute("userLogin");
+        return "redirect:/";
     }
 }

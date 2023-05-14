@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="productTable" class="management_main">
+  <div class="management_main_content">
+    <h2>Products</h2>
+    <div style="margin-bottom: 20px;color: #1a1e21">
+      <a th:href="@{/manageController/createProduct}" style="text-decoration: none" th:class="addContent"> Add Product </a>
+    </div>
+    <div class="table-responsive">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr  th:each="product:${listProduct}">
+          <td th:text="${product.getId()}"></td>
+          <td th:text="${product.getProductName()}"></td>
+          <td >A great product</td>
+          <td th:text="${product.getPrice()+' VND'}"></td>
+          <td><a href="#">Edit</a> | <a href="#">Delete</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>
