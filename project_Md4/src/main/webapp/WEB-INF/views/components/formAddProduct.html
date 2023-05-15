@@ -3,35 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
 </head>
 <body>
-<form class="form-createItem" th:fragment="formAddProduct">
+<form class="form-createItem"
+      th:action="${product.getId()==0}?'/manageController/addProduct':'/manageController/updateProduct'"
+      th:fragment="formAddProduct" method="post">
     <div class="form-container">
         <div class="form-group">
             <label class="form-label" for="product-category">Danh mục:</label>
-            <select class="form-input" id="product-category" name="product-category">
+            <select class="form-input" id="product-category" name="categoryId">
                 <option value="0">-- Chọn danh mục --</option>
                 <th:block th:each="category:${session.categories}">
-                    <option th:value="${category.getId()}"  th:text="${category.getCategoryName()}"></option>
+                    <th:block></th:block>
+                    <option th:value="${category.getId()}"
+                            th:selected="${category.getId()==product.getCategoryId()?'':'no'}"
+                            th:text="${category.getCategoryName()}"></option>
+                </th:block>
                 </th:block>
             </select>
         </div>
         <div class="form-group">
-            <label class="form-label" for="productName">Tên Sản Phẩm:</label>
-            <input class="form-input" type="text" id="productName" name="productName">
+            <label class="form-label">Tên Sản Phẩm:</label>
+            <input class="form-input" th:value="${product.getProductName()}" type="text" name="productName">
         </div>
         <div class="form-group">
-            <label class="form-label" for="title">Tiêu đề:</label>
-            <input class="form-input" type="text" id="title" name="title">
+            <label class="form-label">Tiêu đề:</label>
+            <input class="form-input" th:value="${product.getTitle()}" type="text" name="title">
         </div>
         <div class="form-group">
             <label class="form-label" for="stoke">Số lượng:</label>
-            <input class="form-input" type="number" id="stoke" name="stoke" min="1">
+            <input class="form-input" type="number" th:value="${product.getStoke()}" id="stoke" name="stoke"
+                   min="1">
         </div>
         <div class="form-group">
-            <label class="form-label" for="price">Giá:</label>
-            <input class="form-input" type="number" id="price" name="price" min="0">
+            <label class="form-label">Giá:</label>
+            <input class="form-input" type="number" th:value="${product.getPrice()}" name="price" min="0">
         </div>
         <div class="form-group product-image">
             <label class="form-label">Ảnh:</label>
@@ -39,30 +45,45 @@
                 <label for="img" class="form-button">Tải ảnh lên</label>
                 <input type="file" id="img" name="img">
             </div>
-            <img th:src="@{/img/about.jpg}" alt="Product image preview">
+            <th:block th:if="${product.getImg()!=null}">
+                <th:block th:if="${product.getImg()!=''}">
+                    <img th:src="@{product.getImg()}" alt="Product image preview">
+                </th:block>
+            </th:block>
         </div>
         <div class="form-group">
-            <label class="form-label" for="description1">Mô tả:</label>
-            <textarea class="form-textarea" id="description1" name="description1"></textarea>
+            <label class="form-label">Mô tả:</label>
+
+            <textarea class="form-textarea" th:value="${product.getDescription1()}"
+                      name="description1"></textarea>
         </div>
         <div class="form-group">
-            <label class="form-label" for="description2">Mô tả:</label>
-            <textarea class="form-textarea" id="description2" name="description2"></textarea>
+            <label class="form-label">Mô tả:</label>
+            <textarea class="form-textarea" th:value="${product.getDescription2()}"
+                      name="description2"></textarea>
+
         </div>
         <div class="form-group">
-            <label class="form-label" for="description3">Mô tả:</label>
-            <textarea class="form-textarea" id="description3" name="description3"></textarea>
+            <label class="form-label">Mô tả:</label>
+            <textarea class="form-textarea" th:value="${product.getDescription3()}"
+                      name="description3"></textarea>
         </div>
         <div class="form-group">
-            <label class="form-label" for="description4">Mô tả:</label>
-            <textarea class="form-textarea" id="description4" name="description4"></textarea>
+            <label class="form-label">Mô tả:</label>
+            <textarea class="form-textarea" th:value="${product.getDescription4()}" name="description4"></textarea>
         </div>
         <div class="form-group">
-            <label class="form-label" for="description5">Mô tả:</label>
-            <textarea class="form-textarea" id="description5" name="description5"></textarea>
+            <label class="form-label">Mô tả:</label>
+            <textarea class="form-textarea" th:value="${product.getDescription5()}"
+                      name="description5"></textarea>
         </div>
-        <div  style="display: flex;justify-content: center">
-        <button type="submit" class="form-button">Thêm sản phẩm</button>
+        <div style="display: flex;justify-content: center">
+            <button type="submit" class="form-button"
+                    th:if="${product.getProductName()!=null}">Cập Nhật
+            </button>
+            <button type="submit" class="form-button"
+                    th:if="${product.getProductName()==null}">Thêm sản phẩm
+            </button>
         </div>
     </div>
 </form>

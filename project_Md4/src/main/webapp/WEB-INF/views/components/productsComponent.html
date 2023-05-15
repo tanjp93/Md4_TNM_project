@@ -29,7 +29,7 @@
           <td th:text="${product.getProductName()}"></td>
           <td >A great product</td>
           <td th:text="${product.getPrice()+' VND'}"></td>
-          <td><a href="#">Edit</a> | <a href="#">Delete</a></td>
+          <td><a th:href="@{'/manageController/editProduct/'+${product.getId()}}">Edit</a> &emsp;|&emsp; <a href="#">Delete</a></td>
         </tr>
         </tbody>
       </table>

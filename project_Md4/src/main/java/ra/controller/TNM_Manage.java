@@ -2,8 +2,7 @@ package ra.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ra.model.entity.Category;
 import ra.model.entity.Product;
@@ -68,18 +67,30 @@ public class TNM_Manage {
     }
 
     @GetMapping("/createProduct")
-    public ModelAndView backHome(HttpServletRequest request,Model model) {
+    public ModelAndView backHome(HttpServletRequest request) {
         List<Category>categories=categoryService.findAll();
         request.getSession().setAttribute("categories",categories);
-        String action=request.getParameter("action");
-        if (action==null){
-            action="";
-        }
-        switch (action){
-            case "createProduct":
-                model.addAttribute("createProduct","createProduct");
-                break;
-        }
-     return new ModelAndView("createProduct","newProduct",new Product());
+        System.out.println("id"+new Product().getId());
+     return new ModelAndView("createAndEditProduct","product",new Product());
+}
+    @GetMapping("/editProduct/{id}")
+    public ModelAndView toEditProduct(@PathVariable("id") String id,HttpServletRequest request){
+        Product editProduct=productService.findById(Integer.parseInt(id));
+        List<Category>categories=categoryService.findAll();
+        request.getSession().setAttribute("categories",categories);
+        System.out.println("img Update =>>>"+editProduct.getImg());
+        return new ModelAndView("createAndEditProduct","product",editProduct);
+    }
+    @PostMapping("/updateProduct")
+    public String doUpdateProduct(@ModelAttribute("product")Product updateProduct){
+        System.out.println("update product -->>>>"+ updateProduct);
+        productService.update(updateProduct);
+        return "redirect:/manageController";
+    };
+    @PostMapping("/addProduct")
+    public String doAddProduct(@ModelAttribute("product")Product newProduct){
+        System.out.println("new product -->>>>"+ newProduct);
+        productService.save(newProduct);
+        return "redirect:/manageController";
     }
 }
