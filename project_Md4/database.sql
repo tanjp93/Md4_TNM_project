@@ -176,7 +176,7 @@ end //
 
 
 delimiter //
-create procedure PROC_Product_getAllProduct()
+create procedure PROC_Product_getAllProduct()user
 begin
     select * from product ;
 end //

@@ -82,7 +82,7 @@ public class TNM_Manage {
         Product editProduct=productService.findById(Integer.parseInt(id));
         List<Category>categories=categoryService.findAll();
         request.getSession().setAttribute("categories",categories);
-        System.out.println("img Update =>>>"+editProduct.getImg());
+//        System.out.println("img Update =>>>"+editProduct.getImg());
         return new ModelAndView("createAndEditProduct","product",editProduct);
     }
     @GetMapping("/deleteProduct/{id}")
@@ -92,7 +92,7 @@ public class TNM_Manage {
         return "redirect:/manageController?action=displayPro";
     }
     @PostMapping("/updateProduct")
-    public String doUpdateProduct(@ModelAttribute("product")Product updateProduct,@RequestParam("imgInput") MultipartFile image){
+    public String doUpdateProduct(@ModelAttribute("product")Product updateProduct, @RequestParam("imgInput") MultipartFile image){
         String uploadPathProducts = "C:\\Users\\user\\Desktop\\Rikkei\\MD4\\BT\\JSP-servlet\\102-project-MD4\\Part1\\project_Md4\\src\\main\\resources\\assets\\img\\products\\";
         //Upload IMG
         File file = new File(uploadPathProducts);
@@ -100,6 +100,9 @@ public class TNM_Manage {
             file.mkdirs();
         }
         String fileName = image.getOriginalFilename();
+        if (fileName.length() == 0){
+             fileName=productService.findById(updateProduct.getId()).getImg();
+        }
         // coppy file upload đén thư mục chỉ đinh
         try {
             FileCopyUtils.copy(image.getBytes(),new File(uploadPathProducts + fileName));

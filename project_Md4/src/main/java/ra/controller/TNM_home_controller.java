@@ -89,7 +89,7 @@ public class TNM_home_controller {
 
     @PostMapping("/login")
     public String doLogin(@ModelAttribute("userLogin") User user, Model model, HttpServletRequest request) {
-        System.out.println("Vao day khong");
+
         if (user.getUserName().trim().equals("")) {
             model.addAttribute("userLoginErr", "Vui lòng nhập tên đăng nhâp !");
             return "/login";
