@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Form Thông Tin Cá Nhân</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Tân Nhật Minh Glass</title>
+    <th:block th:insert="components/titlePageComponent::titlePageComponent"></th:block>
+</head>
+
+<body>
+<th:block th:fragment="formPersonnal">
+    <form action="/userManage/updateUser" class="form" method="post" enctype="multipart/form-data">
+        <div class="avatar">
+            <img src="https://via.placeholder.com/150x150.png?text=Avatar" alt="Avatar">
+        </div>
+        <div class="avatar-upload">
+            <label for="avatarUpload">Chọn ảnh đại diện:</label>
+            <input type="file" id="avatarUpload" name="avatarUpload">
+        </div>
+        <div class="userName" hidden>
+            <label >ID:</label>
+            <input type="text" name="id" th:value="${session.userLogin.getId()}"/>
+            <input type="text" name="role" th:value="${session.userLogin.getRole()}"/>
+        </div>
+        <div class="userName">
+            <label for="username">UserName:</label>
+            <span type="text" id="username" name="username" th:text="${session.userLogin.getUserName()}"></span>
+        </div>
+        <div class="fullName">
+            <label for="fullName">Họ tên:</label>
+            <input class="edit-input" type="text" id="fullName" th:value="${session.userLogin.getFullName()}"
+                   name="fullName" value="Nguyễn Văn A" readonly>
+        </div>
+        <div class="email">
+            <label for="email">Email:</label>
+            <input class="edit-input" type="email" id="email" th:value="${session.userLogin.getEmail()}" name="email"
+                   value="nguyenvana@gmail.com" readonly>
+        </div>
+        <div class="address">
+            <label for="address">Địa chỉ:</label>
+            <input class="edit-input" type="text" id="address" th:value="${session.userLogin.getAddress()}"
+                   name="address" value="Hà Nội" readonly>
+        </div>
+        <div class="phoneNumber">
+            <label for="phone">Số điện thoại:</label>
+            <input class="edit-input" type="tel" id="phone" name="phone" th:value="${session.userLogin.getPhone()}"
+                   readonly>
+        </div>
+        <div class="password">
+            <label for="password">Mật khẩu:</label>
+            <input class="edit-input" type="password" id="password" name="password" th:value="${session.userLogin.getPassword()}" readonly>
+
+        </div>
+        <div class="password" id="rePassword" hidden style="border: none;">
+            <label for="rePw">Xác nhận lại mật khẩu:</label>
+            <input class="edit-input" type="password" id="rePw" name="rePassword"  readonly>
+        </div>
+        <div style="width: 100%;text-align: center;">
+            <div style="color: #bf0606;" th:text="${checkErr}"></div>
+            <button class="edit_btn" type="button" onclick="editUserFunction()">Sửa</button>
+            <input id="edit_btn-Update" hidden type="submit" value="Cập nhật">
+        </div>
+        <div class="back-home">
+            <a href="#">Trở về trang chủ</a>
+        </div>
+    </form>
+    <script>
+
+        function editUserFunction() {
+            let editInputCollection = document.querySelectorAll('.edit-input');
+            editInputCollection.forEach(element => {
+                element.removeAttribute("readonly")
+            });
+
+            document.getElementById("edit_btn-Update").removeAttribute("hidden");
+            document.getElementById("rePassword").removeAttribute("hidden");
+            document.querySelector(".edit_btn").setAttribute("style","display:none")
+        }
+    </script>
+</th:block>
+</body>
+</html>

@@ -3,6 +3,43 @@ package ra.model.entity;
 public class User {
     private int id;
     private String userName;
+    private String fullName;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public User(int id, String userName, String fullName, String password, String email, String phone, String address, String avatar, String role) {
+        this.id = id;
+        this.userName = userName;
+        this.fullName = fullName;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.avatar = avatar;
+        this.role = role;
+    }
+
     private String password;
     private String email;
     private String phone;
@@ -93,17 +130,4 @@ public class User {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address='" + address + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
 }

@@ -4,20 +4,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import ra.model.entity.Product;
 import ra.model.entity.User;
+import ra.model.service.product.IProductService;
+import ra.model.service.product.ProductServiceIMPL;
 import ra.model.service.userService.IUserService;
 import ra.model.service.userService.UserServiceIMPL;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class TNM_home_controller {
     IUserService userService = new UserServiceIMPL();
+    IProductService productService=new ProductServiceIMPL();
 
     @GetMapping({"/", "/home"})
-    public String backHome(HttpServletRequest request, Model model) {
+    public String backHome(HttpServletRequest request, Model model, HttpSession session) {
         String action = request.getParameter("action");
+        session.setAttribute("listProduct",productService.findAll());
         if (action==null){
             action="home";
         }
@@ -47,6 +54,7 @@ public class TNM_home_controller {
 
     @PostMapping("/register")
     public String doRegister(@ModelAttribute("userRegister") User user, @RequestParam("rePassword") String rePassword, Model model) {
+
         if (user.getUserName().trim().equals("")) {
             model.addAttribute("userErr", "Vui lòng nhập tên đăng nhâp");
             return "/register";
@@ -81,12 +89,13 @@ public class TNM_home_controller {
 
     @PostMapping("/login")
     public String doLogin(@ModelAttribute("userLogin") User user, Model model, HttpServletRequest request) {
+        System.out.println("Vao day khong");
         if (user.getUserName().trim().equals("")) {
             model.addAttribute("userLoginErr", "Vui lòng nhập tên đăng nhâp !");
             return "/login";
         }
         if (user.getPassword().trim().equals("")) {
-            model.addAttribute("passwordLoginErr", "Vui lòng nhập tên mật khẩu !");
+            model.addAttribute("passwordLoginErr", "Vui lòng nhập mật khẩu !");
             return "/login";
         }
         User userLogin = userService.userLogin(user);

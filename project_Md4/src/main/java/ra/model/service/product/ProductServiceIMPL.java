@@ -16,7 +16,7 @@ public class ProductServiceIMPL implements IProductService {
         Connection conn = null;
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_getAllProduct()");
+            CallableStatement callSt = conn.prepareCall("call PROC_Product_getAllProduct()");
             ResultSet rs = callSt.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
@@ -47,19 +47,18 @@ public class ProductServiceIMPL implements IProductService {
         Connection conn = null;
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_addProduct(?,?,?,?,?,?,?,?,?,?,?,?)");
-            callSt.setInt(1, product.getId());
-            callSt.setString(2, product.getProductName());
-            callSt.setInt(3, product.getCategoryId());
-            callSt.setLong(4, product.getPrice());
-            callSt.setInt(5, product.getStoke());
-            callSt.setString(6, product.getTitle());
-            callSt.setString(7, product.getImg());
-            callSt.setString(8, product.getDescription1());
-            callSt.setString(9, product.getDescription2());
-            callSt.setString(10, product.getDescription3());
-            callSt.setString(11, product.getDescription4());
-            callSt.setString(12, product.getDescription5());
+            CallableStatement callSt = conn.prepareCall("call PROC_Product_CreateNewProduct(?,?,?,?,?,?,?,?,?,?,?)");
+            callSt.setString(1, product.getProductName());
+            callSt.setInt(2, product.getCategoryId());
+            callSt.setLong(3, product.getPrice());
+            callSt.setInt(4, product.getStoke());
+            callSt.setString(5, product.getTitle());
+            callSt.setString(6, product.getImg());
+            callSt.setString(7, product.getDescription1());
+            callSt.setString(8, product.getDescription2());
+            callSt.setString(9, product.getDescription3());
+            callSt.setString(10, product.getDescription4());
+            callSt.setString(11, product.getDescription5());
             callSt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,7 +74,7 @@ public class ProductServiceIMPL implements IProductService {
         Connection conn = null;
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_updateProduct(?,?,?,?,?,?,?,?,?,?,?,?)");
+            CallableStatement callSt = conn.prepareCall("call PROC_Product_updateProduct(?,?,?,?,?,?,?,?,?,?,?,?)");
             callSt.setInt(1, product.getId());
             callSt.setString(2, product.getProductName());
             callSt.setInt(3, product.getCategoryId());
@@ -104,7 +103,7 @@ public class ProductServiceIMPL implements IProductService {
         Product product = new Product();
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_findProductById(?)");
+            CallableStatement callSt = conn.prepareCall("call PROC_Product_findProductById(?)");
             callSt.setInt(1, productId);
             ResultSet rs = callSt.executeQuery();
             while (rs.next()) {
@@ -134,11 +133,13 @@ public class ProductServiceIMPL implements IProductService {
     public boolean delete(int integer) {
         Connection conn = null;
         try {
-            CallableStatement callSt = conn.prepareCall("call PROC_deleteProduct(?)");
+            conn=ConnectionToDB.getConnectionToDB();
+            CallableStatement callSt = conn.prepareCall("call PROC_Product_deleteProduct(?)");
             callSt.setInt(1, integer);
             callSt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         } finally {
             ConnectionToDB.closeConnection(conn);
         }
@@ -151,7 +152,7 @@ public class ProductServiceIMPL implements IProductService {
         List<Product> listProduct = new ArrayList<>();
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_findProductByName(?)");
+            CallableStatement callSt = conn.prepareCall("call PROC_Product_findProductByName(?)");
             callSt.setString(1, productName);
             ResultSet rs = callSt.executeQuery();
             while (rs.next()) {

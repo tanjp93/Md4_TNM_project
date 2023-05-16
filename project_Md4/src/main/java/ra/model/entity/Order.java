@@ -10,6 +10,26 @@ public class Order {
     private long oderPay;
     private Date orderTime;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Order(int id, int userId, int productId, int quantity, long oderPay, Date orderTime, String status) {
+        this.id = id;
+        this.userId = userId;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.oderPay = oderPay;
+        this.orderTime = orderTime;
+        this.status = status;
+    }
+
+    private String status;
+
     public Order() {
     }
 

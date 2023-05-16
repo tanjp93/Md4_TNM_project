@@ -19,12 +19,13 @@ public class UserServiceIMPL implements IUserService {
         List<User> list = new ArrayList<>();
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_getListUser()");
+            CallableStatement callSt = conn.prepareCall("call PROC_User_getListUser()");
             ResultSet resultSet = callSt.executeQuery();
             while (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getInt("id"));
                 user.setUserName(resultSet.getString("userName"));
+                user.setFullName(resultSet.getString("fullName"));
                 user.setPassword(resultSet.getString("password"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPhone(resultSet.getString("phone"));
@@ -46,7 +47,7 @@ public class UserServiceIMPL implements IUserService {
         Connection conn = null;
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_register(?,?)");
+            CallableStatement callSt = conn.prepareCall("call PROC_User_register(?,?)");
             callSt.setString(1, user.getUserName());
             callSt.setString(2, user.getPassword());
             callSt.executeUpdate();
@@ -64,9 +65,9 @@ public class UserServiceIMPL implements IUserService {
         Connection conn = null;
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_updateUser(?,?,?,?,?,?,?,?)");
+            CallableStatement callSt = conn.prepareCall("call PROC_User_updateUser(?,?,?,?,?,?,?,?)");
             callSt.setInt(1, user.getId());
-            callSt.setString(2, user.getUserName());
+            callSt.setString(2, user.getFullName());
             callSt.setString(3, user.getPassword());
             callSt.setString(4, user.getEmail());
             callSt.setString(5, user.getPhone());
@@ -89,12 +90,13 @@ public class UserServiceIMPL implements IUserService {
         User user = new User();
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callableStatement = conn.prepareCall("call PROC_findUserById(?)");
+            CallableStatement callableStatement = conn.prepareCall("call PROC_User_findUserById(?)");
             callableStatement.setInt(1, userId);
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
                 user.setId(resultSet.getInt("id"));
                 user.setUserName(resultSet.getString("userName"));
+                user.setFullName(resultSet.getString("fullName"));
                 user.setPassword(resultSet.getString("password"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPhone(resultSet.getString("phone"));
@@ -115,7 +117,7 @@ public class UserServiceIMPL implements IUserService {
         Connection conn = null;
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_deleteUser(?)");
+            CallableStatement callSt = conn.prepareCall("call PROC_User_deleteUser(?)");
             callSt.setInt(1, userId);
             callSt.executeUpdate();
         } catch (Exception e) {
@@ -131,7 +133,7 @@ public class UserServiceIMPL implements IUserService {
         Connection conn = null;
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_findUserByName(?)");
+            CallableStatement callSt = conn.prepareCall("call PROC_User_findUserByName(?)");
             callSt.setString(1, userName);
             ResultSet resultSet = callSt.executeQuery();
             if (resultSet.next()) {
@@ -160,7 +162,7 @@ public class UserServiceIMPL implements IUserService {
         int id = 0;
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_login(?,?)");
+            CallableStatement callSt = conn.prepareCall("call PROC_User_login(?,?)");
             callSt.setString(1, user.getUserName());
             callSt.setString(2, user.getPassword());
             ResultSet resultSet = callSt.executeQuery();
@@ -175,5 +177,36 @@ public class UserServiceIMPL implements IUserService {
             ConnectionToDB.closeConnection(conn);
         }
         return userLogin;
+    }
+    @Override
+    public  List<User> findUserByUserName(String userName){
+        Connection conn = null;
+        List<User> listUserSearch=new ArrayList<>();
+        try{
+            conn=ConnectionToDB.getConnectionToDB();
+            CallableStatement callSt= conn.prepareCall("call PROC_User_findUserByName(?)");
+            callSt.setString(1,userName);
+            ResultSet resultSet=callSt.executeQuery();
+            while (resultSet.next()){
+                User user=new User();
+                user.setId(resultSet.getInt("id"));
+                user.setUserName(resultSet.getString("userName"));
+                user.setFullName(resultSet.getString("fullName"));
+                user.setPassword(resultSet.getString("password"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPhone(resultSet.getString("phone"));
+                user.setAddress(resultSet.getString("address"));
+                user.setAvatar(resultSet.getString("avatar"));
+                user.setRole(resultSet.getString("role"));
+                listUserSearch.add(user);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            ConnectionToDB.closeConnection(conn);
+        }
+        return listUserSearch;
     }
 }

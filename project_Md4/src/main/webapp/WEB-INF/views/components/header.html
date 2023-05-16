@@ -46,7 +46,7 @@
                         <a href="#"><span th:text="${session.userLogin.getUserName()}"></span>
                             <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
-                            <a href="">Thông tin cá nhân</a>
+                            <a th:href="@{/userManage/personalInformation}">Thông tin cá nhân</a>
                             <a th:href="@{/logOut}">LogOut</a>
                         </ul>
                     </li>

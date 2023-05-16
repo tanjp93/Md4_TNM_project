@@ -130,3 +130,113 @@
     height: auto;
     margin-bottom: 5px;
 }
+
+/*/Form Personal Information/*/
+.form {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #ccc;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="tel"],
+.form input[type="password"],
+#rePassword,
+#password
+/*,.edit-input*/
+{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.form input[type="submit"],
+.edit_btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100px;
+    margin: 10px;
+}
+
+.form .avatar {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.form .avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.form .userName,
+.form .fullName,
+.form .email,
+.form .address,
+.form .phoneNumber,
+.form .password {
+    margin-bottom: 10px;
+}
+
+.form .userName label{
+    display: inline-block;
+    margin-right: 50px;
+}
+.form .fullName label,
+.form .email label,
+.form .address label,
+.form .phoneNumber label,
+.form .password label,
+.form .rePassword label {
+    display: inline-block;
+    width: 100%;
+}
+
+.form .avatar-upload {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.form .avatar-upload input[type="file"] {
+    display: none;
+}
+
+.form .back-home {
+    margin-top: 20px;
+    text-align: center;
+}
+.form  input[type="submit"] {
+    margin-top: 10px;
+}
+.form input[type="submit"]:hover{
+    /* background-color: var(--color-primary); */
+    background-color: rgb(254,185,0);
+}
+.form .edit_btn:hover,.edit input[type="submit"]:hover{
+    background-color: var(--color-primary);
+}
+.back-home a{
+    text-decoration: none;
+    color: var(--color-default);
+}
+
+.back-home:hover a{
+    color: var(--color-primary);
+}

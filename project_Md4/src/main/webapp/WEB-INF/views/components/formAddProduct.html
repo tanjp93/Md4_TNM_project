@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form class="form-createItem"
+<form class="form-createItem" enctype="multipart/form-data"
       th:action="${product.getId()==0}?'/manageController/addProduct':'/manageController/updateProduct'"
       th:fragment="formAddProduct" method="post">
     <div class="form-container">
@@ -21,6 +21,10 @@
                 </th:block>
                 </th:block>
             </select>
+        </div>
+        <div class="form-group" style="display: none">
+            <label class="form-label">id:</label>
+            <input class="form-input" th:value="${product.getId()}" type="text" name="id">
         </div>
         <div class="form-group">
             <label class="form-label">Tên Sản Phẩm:</label>
@@ -39,42 +43,42 @@
             <label class="form-label">Giá:</label>
             <input class="form-input" type="number" th:value="${product.getPrice()}" name="price" min="0">
         </div>
-        <div class="form-group product-image">
+        <div class="form-group product-image" >
             <label class="form-label">Ảnh:</label>
             <div class="file-upload">
                 <label for="img" class="form-button">Tải ảnh lên</label>
-                <input type="file" id="img" name="img">
+                <input type="file" id="img" name="imgInput">
             </div>
-            <th:block th:if="${product.getImg()!=null}">
-                <th:block th:if="${product.getImg()!=''}">
-                    <img th:src="@{product.getImg()}" alt="Product image preview">
-                </th:block>
-            </th:block>
+<!--            <th:block th:if="${product.getImg()!=null}">-->
+<!--                <th:block th:if="${product.getImg()!=''}">-->
+<!--                    <img th:src="@{/product.getImg()}" alt="Product image preview">-->
+<!--                </th:block>-->
+<!--            </th:block>-->
         </div>
         <div class="form-group">
             <label class="form-label">Mô tả:</label>
 
-            <textarea class="form-textarea" th:value="${product.getDescription1()}"
+            <textarea class="form-textarea" th:text="${product.getDescription1()}"
                       name="description1"></textarea>
         </div>
         <div class="form-group">
             <label class="form-label">Mô tả:</label>
-            <textarea class="form-textarea" th:value="${product.getDescription2()}"
+            <textarea class="form-textarea" th:text="${product.getDescription2()}"
                       name="description2"></textarea>
 
         </div>
         <div class="form-group">
             <label class="form-label">Mô tả:</label>
-            <textarea class="form-textarea" th:value="${product.getDescription3()}"
+            <textarea class="form-textarea" th:text="${product.getDescription3()}"
                       name="description3"></textarea>
         </div>
         <div class="form-group">
             <label class="form-label">Mô tả:</label>
-            <textarea class="form-textarea" th:value="${product.getDescription4()}" name="description4"></textarea>
+            <textarea class="form-textarea" th:text="${product.getDescription4()}" name="description4"></textarea>
         </div>
         <div class="form-group">
             <label class="form-label">Mô tả:</label>
-            <textarea class="form-textarea" th:value="${product.getDescription5()}"
+            <textarea class="form-textarea" th:text="${product.getDescription5()}"
                       name="description5"></textarea>
         </div>
         <div style="display: flex;justify-content: center">
