@@ -13,7 +13,7 @@
 <th:block th:fragment="formPersonnal">
     <form action="/userManage/updateUser" class="form" method="post" enctype="multipart/form-data">
         <div class="avatar">
-            <img src="https://via.placeholder.com/150x150.png?text=Avatar" alt="Avatar">
+            <img th:src="${session.userLogin==null?'https://via.placeholder.com/150x150.png?text=Avatar':'/users/'+session.userLogin.getAvatar()}" alt="Avatar">
         </div>
         <div class="avatar-upload">
             <label for="avatarUpload">Chọn ảnh đại diện:</label>

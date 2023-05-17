@@ -240,3 +240,117 @@
 .back-home:hover a{
     color: var(--color-primary);
 }
+
+/* form Order*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+.order_container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+}
+.order_CustomerDetail{
+    margin-bottom: 20px;
+}
+
+.order_title {
+    font-size: 1.5rem;
+    margin: 20px auto;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.order_form-group {
+    margin-bottom: 20px;
+}
+
+.order_label {
+    display: block;
+    margin-bottom: 5px;
+}
+.order_form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.order_inputNumber[type="number"] {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.order_table_title{
+    margin-bottom: 20px;
+}
+.order_table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.order_table  td,
+.order_table th {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.order_table  th {
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.order_total {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 30px;
+
+}
+
+.order_total label {
+    margin-right: 35%;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.order_form-submitBtn{
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .order_container {
+        padding: 10px;
+    }
+
+    .order_table td,
+    .order_table th {
+        font-size: 14px;
+    }
+
+    .order_container input[type="text"],
+    .order_container input[type="tel"],
+    .order_container textarea,
+    .order_container select,
+    .order_container input[type="number"] {
+        font-size: 14px;
+    }
+}
+/*form Order*/

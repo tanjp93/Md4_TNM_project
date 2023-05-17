@@ -15,7 +15,7 @@ private String description4;
 private String description5;
 
     public Product() {
-    }
+     }
 
     public Product(String productName, int categoryId, long price, int stoke) {
         this.productName = productName;

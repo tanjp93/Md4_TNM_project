@@ -53,8 +53,8 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/img/**", "/css/**", "/js/**", "/scss/**", "/vendor/**","/products/**","/users/**")
-                .addResourceLocations("classpath:/assets/img/", "classpath:/assets/css/","classpath:/assets/js/","classpath:/assets/scss/","classpath:/assets/vendor/","classpath:/assets/img/products/","classpath:/assets/img/users/");
+        registry.addResourceHandler("/img/**", "/css/**", "/js/**", "/scss/**", "/vendor/**","/products/**","/users/**","/certificates/**")
+                .addResourceLocations("classpath:/assets/img/", "classpath:/assets/css/","classpath:/assets/js/","classpath:/assets/scss/","classpath:/assets/vendor/","classpath:/assets/img/products/","classpath:/assets/img/users/","classpath:/assets/img/certificates/");
     }
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver getResolver() throws IOException {

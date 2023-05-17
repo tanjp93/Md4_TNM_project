@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ra.model.entity.Product;
 import ra.model.entity.User;
+import ra.model.service.certificate.CertificateIMPL;
+import ra.model.service.certificate.ICertificateService;
 import ra.model.service.product.IProductService;
 import ra.model.service.product.ProductServiceIMPL;
 import ra.model.service.userService.IUserService;
@@ -20,11 +22,13 @@ import java.util.List;
 public class TNM_home_controller {
     IUserService userService = new UserServiceIMPL();
     IProductService productService=new ProductServiceIMPL();
+    ICertificateService certificateService=new CertificateIMPL();
 
     @GetMapping({"/", "/home"})
     public String backHome(HttpServletRequest request, Model model, HttpSession session) {
         String action = request.getParameter("action");
         session.setAttribute("listProduct",productService.findAll());
+        session.setAttribute("certificates",certificateService.findAll());
         if (action==null){
             action="home";
         }
@@ -104,7 +108,7 @@ public class TNM_home_controller {
             return "/login";
         } else {
             request.getSession().setAttribute("userLogin", userLogin);
-            if (userLogin.getRole().equals("admin") || userLogin.getRole().equals("manager")) {
+            if (userLogin.getRole()!=null & userLogin.getRole().equals("admin") ||userLogin.getRole()!=null &  userLogin.getRole().equals("manager")) {
                 return "redirect:/manageController";
             } else {
                 return "redirect:/";

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:fragment="showCertificates">
+    <section id="projects" class="projects">
+        <div class="container" data-aos="fade-up">
+            <div class="section-header">
+                <h2>Kính An Toàn Tân Nhật Minh</h2>
+                <p>Các sản phẩm của chúng tôi tuân thủ nghiêm ngặt các tiêu chuẩn quản lý chất lượng ISO 9001: 2015
+                    trong từng
+                    công đoạn sản xuất cùng các tiêu chuẩn JIS, ANSI, EN.</p>
+            </div>
+            <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
+                 data-portfolio-sort="original-order">
+
+                <ul class="portfolio-flters" data-aos="fade-up" data-aos-delay="100">
+                    <li data-filter="*" class="filter-active">Tất Cả</li>
+                    <li data-filter=".filter-remodeling">Kết Quả thử Nghiệm</li>
+                    <li data-filter=".filter-construction">Chứng Nhận Hợp Chuẩn Hợp Quy</li>
+                    <li data-filter=".filter-repairs">Chứng Nhận ISO</li>
+                </ul><!-- End Projects Filters -->
+                <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
+                    <th:block th:each="certificate:${session.certificates}">
+                        <div th:if="${certificate.getType() == 1}"
+                             class="col-lg-4 col-md-6 portfolio-item filter-remodeling">
+                            <div class="portfolio-content h-100">
+                                <img th:src="${'/certificates/'+ certificate.getImg()}" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4 th:text="${certificate.getCertificateName()}"></h4>
+                                    <p th:text="${certificate.getDescription()}"></p>
+                                    <a th:href="${'/img/'+certificate.getImg()}" title="Remodeling 1"
+                                       data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i
+                                            class="bi bi-zoom-in"></i></a>
+                                    <a href="" title="More Details" class="details-link"><i
+                                            class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div th:if="${certificate.getType() == 2}"
+                             class="col-lg-4 col-md-6 portfolio-item filter-construction">
+                            <div class="portfolio-content h-100">
+                                <img th:src="${'/certificates/'+ certificate.getImg()}" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4 th:text="${certificate.getCertificateName()}"></h4>
+                                    <p th:text="${certificate.getDescription()}"></p>
+                                    <a th:href="${'/img/'+certificate.getImg()}" title="Remodeling 1"
+                                       data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i
+                                            class="bi bi-zoom-in"></i></a>
+                                    <a href="project-details.html" title="More Details" class="details-link"><i
+                                            class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div th:if="${certificate.getType() == 3}"
+                             class="col-lg-4 col-md-6 portfolio-item filter-repairs">
+                            <div class="portfolio-content h-100">
+                                <img th:src="${'/certificates/'+ certificate.getImg()}" class="img-fluid" alt="">
+                                <div class="portfolio-info">
+                                    <h4 th:text="${certificate.getCertificateName()}"></h4>
+                                    <p th:text="${certificate.getDescription()}"></p>
+                                    <a th:href="${'/img/'+certificate.getImg()}" title="Remodeling 1"
+                                       data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i
+                                            class="bi bi-zoom-in"></i></a>
+                                    <a href="project-details.html" title="More Details" class="details-link"><i
+                                            class="bi bi-link-45deg"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+                <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry"
+                     data-portfolio-sort="original-order">
+                </div>
+            </div>
+        </div>
+    </section>
+</th:block>
+</body>
+</html>

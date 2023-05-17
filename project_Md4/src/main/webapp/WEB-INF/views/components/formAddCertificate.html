@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form class="form-createItem" enctype="multipart/form-data"
+      th:action="${certificate.getId()==0}?'/manageController/addCertificate':'/manageController/updateCertificate'"
+      th:fragment="formAddCertificate" method="post">
+    <div class="form-container">
+        <div class="form-group">
+            <label class="form-label" for="certificateName">Tên Chứng Chỉ :</label>
+            <input class="form-input" th:value="${certificate.getCertificateName()}" type="text" id="certificateName"
+                   name="certificateName">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="type">Tên Chứng Chỉ :</label>
+            <select class="form-input" th:value="${certificate.getType()}" id="type" name="type">
+                <option th:selected="${certificate.getType()==0?'':'no'}" value="0">-- Chọn danh mục --</option>
+                <option th:selected="${certificate.getType()==1?'':'no'}" value="1">-- Kết Quả thử Nghiệm --</option>
+                <option th:selected="${certificate.getType()==2?'':'no'}" value="2">-- Chứng Nhận hợp chuẩn hợp quy --</option>
+                <option th:selected="${certificate.getType()==3?'':'no'}" value="3">-- Chứng Nhận ISO --</option>
+                </th:block>
+            </select>
+        </div>
+        <div class="form-group" style="display: none">
+            <label class="form-label">id:</label>
+            <input class="form-input" th:value="${certificate.getId()}" type="text" name="id">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Mô tả :</label>
+            <input class="form-input" th:value="${certificate.getDescription()}" type="text" name="description">
+        </div>
+        <div class="form-group product-image">
+            <label class="form-label">Ảnh:</label>
+            <div class="file-upload">
+                <label for="img" class="form-button">Tải ảnh lên</label>
+                <input type="file" id="img" name="imgInput">
+            </div>
+        </div>
+        <div style="display: flex;justify-content: center">
+            <button type="submit" class="form-button"
+                    th:if="${certificate.getId()!=0}">Cập Nhật
+            </button>
+            <button type="submit" class="form-button"
+                    th:if="${certificate.getId()==0}">Thêm sản phẩm
+            </button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

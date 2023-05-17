@@ -6,12 +6,9 @@ id int primary key auto_increment,
 categoryName varchar(255) not null
 );
 
-
-
 create table `User`(
  id int primary key auto_increment,
  userName varchar(255) not null ,
- fullName varchar(255),
  `password` varchar(255) not null ,
  email varchar(255) ,
  phone varchar(255) ,
@@ -45,7 +42,6 @@ productId int not null ,
 quantity int not null ,
 oderPay long,
 orderTime Date,
-`status` varchar(255),
 foreign key (userId) references `User`(id),
 foreign key (productId) references product(id)
 );
@@ -56,7 +52,6 @@ orderId int ,
 Total  long ,
 foreign key(orderId) references `order`(id)
 );
-
 
 delimiter //
 create procedure PROC_User_getListUser()
@@ -81,22 +76,25 @@ begin
 end //
 
 delimiter //
-create  procedure   PROC_User_findUserById(userId int)
+create  procedure  PROC_User_findUserById (userId int)
 begin
     select * from user where id=userId;
 end //
+
+
 delimiter //
-create  procedure   PROC_User_findUserByName(userN varchar(255))
+create  procedure  PROC_User_findUserByName (userN varchar(255))
 begin
     select * from user where userName like concat('%', userN, '%');
 end //
 delimiter ;
 
+
 delimiter //
-create procedure PROC_User_updateUser(idUpdate int,fullNameUpdate varchar(255),passwordUpdate varchar(255),emailUpdate varchar(255),phoneUpdate varchar(255),addressUpdate varchar(255),avatarUpdate varchar(255),roleUpdate varchar(255))
+create procedure PROC_User_updateUser(idUpdate int,userNameUpdate varchar(255),passwordUpdate varchar(255),emailUpdate varchar(255),phoneUpdate varchar(255),addressUpdate varchar(255),avatarUpdate varchar(255),roleUpdate varchar(255))
 begin
     update user set
-fullName=fullNameUpdate,password=passwordUpdate,email=emailUpdate,phone=phoneUpdate,address=addressUpdate,avatar=avatarUpdate,role=roleUpdate where id=idUpdate;
+userName=userNameUpdate,password=passwordUpdate,email=emailUpdate,phone=phoneUpdate,address=addressUpdate,avatar=avatarUpdate,role=roleUpdate where id=idUpdate;
 end //
 
 delimiter //
@@ -160,6 +158,13 @@ begin
 end;
 
 delimiter //
+create procedure PROC_Product_findProductById(idDel int)
+begin 
+select * from product where id=idDel;
+end //
+
+
+delimiter //
 create procedure PROC_Product_updateProduct(idUp int, productNameUp varchar(255), categoryIdUp int,  priceUp mediumtext,  stokeUp int,
   titleUp varchar(255),  imgUp varchar(255), description1Up varchar(255),  
   description2Up varchar(255),description3Up varchar(255), description4Up varchar(255),description5Up varchar(255))
@@ -176,11 +181,14 @@ end //
 
 
 delimiter //
-create procedure PROC_Product_getAllProduct()user
+create procedure PROC_Product_getAllProduct()
 begin
     select * from product ;
 end //
 delimiter ;
 
-insert into user (userName, password, role) values ('admin','admin','admin');
-call  PROC_User_register('anhnhan','Anhnhan@1');
+delete from certificates where id=1;
+
+call PROC_Cer_save('chung chi a','khong co gi','anhcun.jpg',3);
+select * from  certificates;
+

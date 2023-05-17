@@ -41,7 +41,7 @@
     <th:block th:if="${displayUser != null}" th:insert="/components/usersComponent :: userTable"></th:block>
     <th:block th:if="${displayPro != null}" th:insert="/components/productsComponent :: productTable"></th:block>
 <!--    <th:block th:if="${displayPro != null}" th:insert="/components/listOrderComponent :: listOrderTable"></th:block>-->
-<!--    <th:block th:if="${displayPro != null}" th:insert="/components/certificatesComponent :: certificatesTable"></th:block>-->
+    <th:block th:if="${displayCertificate != null}" th:insert="/components/certificatesTable :: certificatesTable"></th:block>
 </section>
 <th:block th:insert="/components/footer :: footerForm"></th:block>
 <th:block th:insert="/components/jsComponent::jsComponent"></th:block>
