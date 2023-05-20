@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="ordersComponent" class="management_main">
+    <div class="management_main_content">
+        <h2>Order List</h2>
+        <div style="margin-bottom: 20px;color: #1a1e21">
+            <a th:href="@{/cartController/createOrders}" style="text-decoration: none" th:class="addContent"> Add Order</a>
+        </div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>UserName</th>
+                    <th>Receiver</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr th:each="order:${orders}">
+                    <td th:text="${product.getId()}"></td>
+                    <td th:text="${product.getProductName()}"></td>
+                    <td th:text="${product.getProductName()}"></td>
+                    <td style="max-width: 50px">
+                        <img th:if="${product.getImg() != null}" th:src="${'/products/' + product.getImg()}"
+                             style="width: 100%"/>
+                    </td>
+                    </th:block>
+                    <td th:text="${product.getPrice()+' VND'}"></td>
+                    <td>
+                        <a th:href="@{'/manageController/editProduct/'+${product.getId()}}">Edit</a> &emsp;|&emsp;
+                        <a th:href="@{'/manageController/deleteProduct/'+${product.getId()}}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

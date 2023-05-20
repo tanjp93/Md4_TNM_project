@@ -11,7 +11,7 @@
             <div class="container" data-aos="fade-up">
                 <ul class="nav nav-tabs row  g-2 d-flex">
                     <li th:each="product:${session.listProduct}" class="nav-item col-4">
-<!--                        <a class="nav-link active show" data-bs-toggle="tab" th:data-bs-target="'#tab-'+${product.getId()}">-->
+                        <!--                        <a class="nav-link active show" data-bs-toggle="tab" th:data-bs-target="'#tab-'+${product.getId()}">-->
                         <a th:id="${'nav-' + session.listProduct.indexOf(product)}"
                            class="nav-link"
                            data-bs-toggle="tab"
@@ -20,9 +20,9 @@
                         </a>
                     </li><!-- End tab nav item -->
                 </ul>
-                <div class="tab-content"  th:each="product:${session.listProduct}">
+                <div class="tab-content" th:each="product:${session.listProduct}">
                     <div class="tab-pane " th:id="'tab-'+${session.listProduct.indexOf(product)}">
-<!--                    <div class="tab-pane active show" th:id="'tab-'+${product.getId()}">-->
+                        <!--                    <div class="tab-pane active show" th:id="'tab-'+${product.getId()}">-->
                         <div class="row">
                             <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center"
                                  data-aos="fade-up" data-aos-delay="100">
@@ -30,14 +30,33 @@
                                 <p class="fst-italic" th:text="${product.getDescription2()}">
                                 </p>
                                 <ul>
-                                    <li><i class="bi bi-check2-all"></i> <span th:text="${product.getDescription2()}"></span>
+                                    <li><i class="bi bi-check2-all"></i> <span
+                                            th:text="${product.getDescription2()}"></span>
                                     </li>
-                                    <li><i class="bi bi-check2-all"></i> <span th:text="${product.getDescription3()}"></span>
+                                    <li><i class="bi bi-check2-all"></i> <span
+                                            th:text="${product.getDescription3()}"></span>
                                     </li>
-                                    <li><i class="bi bi-check2-all"></i> <span th:text="${product.getDescription4()}"></span>
-                                    <li><i class="bi bi-check2-all"></i> <span th:text="${product.getDescription5()}"></span>
+                                    <li><i class="bi bi-check2-all"></i> <span
+                                            th:text="${product.getDescription4()}"></span>
+                                    <li><i class="bi bi-check2-all"></i> <span
+                                            th:text="${product.getDescription5()}"></span>
                                     </li>
                                 </ul>
+                                <form th:action="@{/cartController/orderDetail}" method="post" th:object="${orderDetail}">
+                                    <input hidden="hidden" name="product_id" th:value="${product.getId()}"/>
+                                    <input hidden="hidden" name="product_price" th:value="${product.getPrice()}"/>
+                                    <div style="width: 100%; display: flex; justify-content: center;margin-bottom: 0.5rem">
+                                        <div class="form-outline" style="width: 4rem;">
+                                            <input value="1" type="number" id="typeNumber"  min="1"
+                                                   name="quantity"
+                                                   class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <p style="width: 100%; display: flex; justify-content: center;">
+                                        <button type="submit" class="btn btn-outline-warning">Đặt Hàng</button>
+                                    </p>
+                                </form>
+
                             </div>
                             <div class="col-lg-6 order-1 order-lg-2 text-center" data-aos="fade-up"
                                  data-aos-delay="200">

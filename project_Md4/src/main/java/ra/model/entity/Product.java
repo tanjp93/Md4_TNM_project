@@ -4,7 +4,7 @@ public class Product {
 private  int id;
 private String productName;
 private int categoryId;
-private long price;
+private float price;
 private  int stoke;
 private String title;
 private String img;
@@ -72,11 +72,11 @@ private String description5;
         this.categoryId = categoryId;
     }
 
-    public long getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

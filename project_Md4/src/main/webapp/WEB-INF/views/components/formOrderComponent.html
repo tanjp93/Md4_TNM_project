@@ -1,79 +1,116 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biểu mẫu đơn đặt hàng</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Biểu mẫu đơn đặt hàng</title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 <div th:fragment="orderFormComponent" class="order_container">
-  <form action="#" method="post">
-    <div class="order_CustomerDetail">
-      <div style="text-align: center;">
-        <h2 class="order_title">THÔNG TIN ĐẶT HÀNG</h2>
-      </div>
-      <div class="order_form-group">
-        <label class="order_label" for="name">Họ và tên người đặt hàng:</label>
-        <input hidden class="order_form-input" type="text" id="userId" name="userId" />
-        <input class="order_form-input" type="text" id="name" name="name" required />
-      </div>
-      <div class="order_form-group">
-        <label for="phone">Số điện thoại:</label>
-        <input class="order_form-input" type="tel" id="phone" name="phone" required />
-      </div>
-      <div class="order_form-group">
-        <label for="address">Địa chỉ giao hàng:</label>
-        <textarea class="order_form-input" id="address" name="address" required></textarea>
-      </div>
-      <div class="order_form-group">
-        <label for="date" style="margin-right: 10%;">Ngày đặt hàng:</label>
-        <input type="date" style="margin-bottom:0.5rem;text-align: center; width: 30%; height: 2rem;" id="date" name="date" required />
-      </div>
-    </div>
-    <h2 class="order_table_title">SẢN PHẨM</h2>
-    <table class="order_table">
-      <thead>
-      <tr>
-        <th>Tên sản phẩm</th>
-        <th>Số lượng</th>
-        <th>Thành tiền</th>
-        <th>Thay đổi</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td><select class="order_form-input" id="status" name="status" required>
-          <option value="">-- Chọn Sản Phẩm --</option>
-          <option value="">sp1</option>
-          <option value="">sp1</option>
-          <option value="">sp1</option>
-        </select></td>
-        <td><input class="order_inputNumber" type="number" name="quantity[]" min="1" required /></td>
-        <td><span>35.000.000</span><sup> VND</sup></td>
-        <td><button type="button" class="btn btn-primary">Primary</button><button type="button" class="btn btn-warning">Warning</button><button type="button" class="btn btn-danger">Danger</button></td>
-      </tr>
-      </tbody>
-    </table>
-    <div class="order_total">
-      <label for="order_total-label">Thành tiền:</label>
-      <span class="order_inputNumber"  id="order_total-label" name="total" ></span>
-      <sup>VND</sup>
-    </div>
-    <!-- <h2 class="order_table_title">TRẠNG THÁI</h2>
-    <div class="order_form-group">
-      <label for="status" style="margin-bottom: 20px;">Trạng thái:</label>
-      <select class="order_form-input" style="margin-top: 0.5rem;" id="status" name="status" required>
-        <option value="">-- Chọn trạng thái --</option>
-        <option value="Đang xử lý">Đang xử lý</option>
-        <option value="Đã giao hàng">Đã giao hàng</option>
-        <option value="Đã hủy">Đã hủy</option>
-      </select>
-    </div> -->
-    <div class="order_form-group order_form-submitBtn ">
-      <input type="submit" value="Đặt hàng" />
-    </div>
-  </form>
+    <form action="#" method="post">
+<!--            <div class="order_CustomerDetail">-->
+<!--              <div style="text-align: center;">-->
+<!--                <h2 class="order_title">THÔNG TIN ĐẶT HÀNG</h2>-->
+<!--              </div>-->
+<!--              <div class="order_form-group">-->
+<!--                <label class="order_label" for="name">Họ và tên người đặt hàng:</label>-->
+<!--                <input hidden class="order_form-input" type="text" id="userId" name="userId" />-->
+<!--                <input class="order_form-input" type="text" id="name" name="name" required />-->
+<!--              </div>-->
+<!--              <div class="order_form-group">-->
+<!--                <label for="phone">Số điện thoại:</label>-->
+<!--                <input class="order_form-input" type="tel" id="phone" name="phone" required />-->
+<!--              </div>-->
+<!--              <div class="order_form-group">-->
+<!--                <label for="address">Địa chỉ giao hàng:</label>-->
+<!--                <textarea class="order_form-input" id="address" name="address" required></textarea>-->
+<!--              </div>-->
+<!--              <div class="order_form-group">-->
+<!--                <label for="date" style="margin-right: 10%;">Ngày đặt hàng:</label>-->
+<!--                <input type="date" style="margin-bottom:0.5rem;text-align: center; width: 30%; height: 2rem;" id="date" name="date" required />-->
+<!--              </div>-->
+<!--            </div>-->
+        <h2 class="order_table_title">SẢN PHẨM</h2>
+        <table class="order_table">
+            <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên sản phẩm</th>
+                <th>Ảnh Sản Phẩm</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Thay đổi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr >
+                <td th:text="">STT</td>
+                <td><span th:text="${product.getProductName()}"></span></td>
+<!--                <td><img th:src="@{/product.getImg()/}"></td>-->
+                <td>
+                    <input class="order_inputNumber" type="number" name="quantity" id="inputQuantityShow" value="1" min="1" readonly/>
+                </td>
+                <td><span th:text="${product.getPrice}"></span><sup> VND</sup></td>
+                <td>
+                    <a href="">
+                        <button type="button" onclick="orderQuantity()" class="btn btn-danger">Sửa</button>
+                        <button type="button" class="btn btn-danger">Xóa</button>
+                    </a>
+                </td>
+            </tr>
+<!--            <tr>-->
+<!--                <td>-->
+<!--                    <select class="order_form-input" id="status" name="status" required>-->
+<!--                        <option value="0"> -&#45;&#45;&#45;&#45;&#45;&#45; Chọn sản phẩm -&#45;&#45;&#45;&#45;&#45;&#45; </option>-->
+<!--                        <th:block th:each="pro:${listProduct}">-->
+<!--                            <option th:value="pro.getId()" th:text="${pro.getProductName()}"></option>-->
+<!--                        </th:block>-->
+<!--                    </select>-->
+<!--                </td>-->
+<!--                <td><input class="order_inputNumber" type="number" name="quantity" min="1" required/></td>-->
+<!--                <td><span th:text="${product.getPrice}"></span><sup> VND</sup></td>-->
+<!--                <td>-->
+<!--                    <a href="">-->
+<!--                        <button id="addProduct"  type="button" class="btn btn-warning">Thêm</button>-->
+<!--                    </a>-->
+<!--                    <a href="">-->
+<!--                        <button type="button" class="btn btn-danger">Xóa</button>-->
+<!--                    </a>-->
+<!--                </td>-->
+<!--            </tr>-->
+            </tbody>
+        </table>
+        <div class="order_total">
+            <label for="order_total-label">Tổng tiền:</label>
+            <span class="order_inputNumber" id="order_total-label" name="total"></span>
+            <sup>VND</sup>
+        </div>
+        <!-- <h2 class="order_table_title">TRẠNG THÁI</h2>
+        <div class="order_form-group">
+          <label for="status" style="margin-bottom: 20px;">Trạng thái:</label>
+          <select class="order_form-input" style="margin-top: 0.5rem;" id="status" name="status" required>
+            <option value="">-- Chọn trạng thái --</option>
+            <option value="Đang xử lý">Đang xử lý</option>
+            <option value="Đã giao hàng">Đã giao hàng</option>
+            <option value="Đã hủy">Đã hủy</option>
+          </select>
+        </div> -->
+        <div class="order_form-group order_form-submitBtn ">
+            <a href="">
+                <button type="button" class="btn btn-success">Thanh Toán</button>
+            </a>
+            <a href="">
+                <button type="button" class="btn btn-info">Mua thêm</button>
+            </a>
+        </div>
+    </form>
 </div>
+<script>
+    function orderQuantity(){
+        let orderQuantity=document.getElementById("inputQuantityShow");
+        orderQuantity.removeAttribute("readonly")
+    }
+</script>
 </body>
 </html>

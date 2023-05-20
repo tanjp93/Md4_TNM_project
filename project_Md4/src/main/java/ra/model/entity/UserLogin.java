@@ -1,6 +1,6 @@
 package ra.model.entity;
 
-public class User {
+public class UserLogin {
     private int id;
     private String userName;
     private String fullName;
@@ -10,24 +10,17 @@ public class User {
     private String address;
     private String avatar;
     private String role;
-
-    public User() {
+    private  int cartId;
+    public UserLogin() {
     }
 
-    public User(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+
+    public int getCartId() {
+        return cartId;
     }
 
-    public User(int id, String userName, String password, String email, String phone, String address, String avatar, String role) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.avatar = avatar;
-        this.role = role;
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
     }
 
     public int getId() {
@@ -116,16 +109,6 @@ public class User {
         this.fullName = fullName;
     }
 
-    public User(int id, String userName, String fullName, String password, String email, String phone, String address, String avatar, String role) {
-        this.id = id;
-        this.userName = userName;
-        this.fullName = fullName;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-        this.avatar = avatar;
-        this.role = role;
-    }
+
 
 }

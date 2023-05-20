@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ra.model.entity.Product;
 import ra.model.entity.User;
+import ra.model.entity.UserLogin;
 import ra.model.service.certificate.CertificateIMPL;
 import ra.model.service.certificate.ICertificateService;
 import ra.model.service.product.IProductService;
@@ -15,6 +16,7 @@ import ra.model.service.userService.UserServiceIMPL;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -57,7 +59,7 @@ public class TNM_home_controller {
     }
 
     @PostMapping("/register")
-    public String doRegister(@ModelAttribute("userRegister") User user, @RequestParam("rePassword") String rePassword, Model model) {
+    public String doRegister(@ModelAttribute("userRegister") User user, @RequestParam("rePassword") String rePassword, Model model) throws SQLException {
 
         if (user.getUserName().trim().equals("")) {
             model.addAttribute("userErr", "Vui lòng nhập tên đăng nhâp");
@@ -102,7 +104,7 @@ public class TNM_home_controller {
             model.addAttribute("passwordLoginErr", "Vui lòng nhập mật khẩu !");
             return "/login";
         }
-        User userLogin = userService.userLogin(user);
+        UserLogin userLogin = userService.userLogin(user);
         if (userLogin == null) {
             model.addAttribute("loginErr", "Tên đăng nhập hoặc mật khẩu không chính xác !");
             return "/login";

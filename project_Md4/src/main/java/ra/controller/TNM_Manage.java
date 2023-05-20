@@ -6,10 +6,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import ra.model.entity.Category;
-import ra.model.entity.Certificate;
-import ra.model.entity.Product;
-import ra.model.entity.User;
+import ra.model.entity.*;
 import ra.model.service.category.CategoryService;
 import ra.model.service.category.ICategoryService;
 import ra.model.service.certificate.CertificateIMPL;
@@ -23,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -66,7 +65,7 @@ public class TNM_Manage {
                 break;
         }
 
-        User user = (User) session.getAttribute("userLogin");
+        UserLogin user = (UserLogin) session.getAttribute("userLogin");
         //check role admin
         if (user == null) {
             return "redirect:/";
@@ -77,7 +76,10 @@ public class TNM_Manage {
 //        check role admin
         return "manage";
     }
-
+    @GetMapping("/getAllProduct")
+    public String getAllProduct(){
+        return "/productList";
+    }
     @GetMapping("/createProduct")
     public ModelAndView backHome(HttpServletRequest request) {
         List<Category> categories = categoryService.findAll();
@@ -126,7 +128,7 @@ public class TNM_Manage {
     ;
 
     @PostMapping("/addProduct")
-    public String doAddProduct(@ModelAttribute("product") Product newProduct, @RequestParam("imgInput") MultipartFile image) {
+    public String doAddProduct(@ModelAttribute("product") Product newProduct, @RequestParam("imgInput") MultipartFile image) throws SQLException {
         String uploadPathProducts = "C:\\Users\\user\\Desktop\\Rikkei\\MD4\\BT\\JSP-servlet\\102-project-MD4\\Part1\\project_Md4\\src\\main\\resources\\assets\\img\\products\\";
         //Upload IMG
         File file = new File(uploadPathProducts);
@@ -152,7 +154,7 @@ public class TNM_Manage {
     }
 
     @PostMapping("/addCertificate")
-    public String addCertificate(@ModelAttribute("certificate") Certificate certificate, @RequestParam("imgInput") MultipartFile image) {
+    public String addCertificate(@ModelAttribute("certificate") Certificate certificate, @RequestParam("imgInput") MultipartFile image) throws SQLException {
         String uploadPathCertificate = "C:\\Users\\user\\Desktop\\Rikkei\\MD4\\BT\\JSP-servlet\\102-project-MD4\\Part1\\project_Md4\\src\\main\\resources\\assets\\img\\certificates\\";
         File file = new File(uploadPathCertificate);
         if (!file.exists()) {
@@ -206,4 +208,8 @@ public class TNM_Manage {
         certificateService.delete(Integer.parseInt(id));
         return "redirect:/manageController?action=displayCertificate";
     }
+//    @GetMapping("/createOrders")
+//    public ModelAndView createOrders(){
+//        return new ModelAndView("createAndEditOrders","userCart",new listOrder_showAll());
+//    }
 }

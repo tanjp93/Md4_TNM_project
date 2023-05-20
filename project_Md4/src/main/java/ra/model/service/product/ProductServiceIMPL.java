@@ -23,7 +23,7 @@ public class ProductServiceIMPL implements IProductService {
                 product.setId(rs.getInt("id"));
                 product.setProductName((rs.getString("productName")));
                 product.setCategoryId(rs.getInt("categoryId"));
-                product.setPrice(rs.getLong("price"));
+                product.setPrice(rs.getFloat("price"));
                 product.setStoke(rs.getInt("stoke"));
                 product.setTitle(rs.getString("title"));
                 product.setImg(rs.getString("img"));
@@ -50,7 +50,7 @@ public class ProductServiceIMPL implements IProductService {
             CallableStatement callSt = conn.prepareCall("call PROC_Product_CreateNewProduct(?,?,?,?,?,?,?,?,?,?,?)");
             callSt.setString(1, product.getProductName());
             callSt.setInt(2, product.getCategoryId());
-            callSt.setLong(3, product.getPrice());
+            callSt.setFloat(3, product.getPrice());
             callSt.setInt(4, product.getStoke());
             callSt.setString(5, product.getTitle());
             callSt.setString(6, product.getImg());
@@ -78,7 +78,7 @@ public class ProductServiceIMPL implements IProductService {
             callSt.setInt(1, product.getId());
             callSt.setString(2, product.getProductName());
             callSt.setInt(3, product.getCategoryId());
-            callSt.setLong(4, product.getPrice());
+            callSt.setFloat(4, product.getPrice());
             callSt.setInt(5, product.getStoke());
             callSt.setString(6, product.getTitle());
             callSt.setString(7, product.getImg());

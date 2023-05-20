@@ -1,11 +1,10 @@
 package ra.model.service.userService;
 
 import ra.model.entity.User;
+import ra.model.entity.UserLogin;
 import ra.model.until.ConnectionToDB;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -43,16 +42,24 @@ public class UserServiceIMPL implements IUserService {
     }
 
     @Override
-    public boolean save(User user) {
+    public boolean save(User user) throws SQLException {
         Connection conn = null;
         try {
             conn = ConnectionToDB.getConnectionToDB();
-            CallableStatement callSt = conn.prepareCall("call PROC_User_register(?,?)");
-            callSt.setString(1, user.getUserName());
+            conn.setAutoCommit(false);
+            CallableStatement callSt = conn.prepareCall("call PROC_User_register(?,?,?)");
+           callSt.setString(1, user.getUserName());
             callSt.setString(2, user.getPassword());
-            callSt.executeUpdate();
+            callSt.registerOutParameter(3, Types.INTEGER);
+            callSt.execute();
+            int newUserId = callSt.getInt(3);
+            CallableStatement callSt2 = conn.prepareCall("{call PROC_Create_cart(?)}");
+            callSt2.setInt(1,newUserId);
+            callSt2.executeUpdate();
+            conn.commit();
         } catch (Exception e) {
             e.printStackTrace();
+            conn.rollback();
             return false;
         } finally {
             ConnectionToDB.closeConnection(conn);
@@ -156,10 +163,10 @@ public class UserServiceIMPL implements IUserService {
     }
 
     @Override
-    public User userLogin(User user) {
+    public UserLogin userLogin(User user) {
         Connection conn = null;
-        User userLogin = null;
-        int id = 0;
+        UserLogin userLogin = null;
+
         try {
             conn = ConnectionToDB.getConnectionToDB();
             CallableStatement callSt = conn.prepareCall("call PROC_User_login(?,?)");
@@ -167,9 +174,16 @@ public class UserServiceIMPL implements IUserService {
             callSt.setString(2, user.getPassword());
             ResultSet resultSet = callSt.executeQuery();
             while (resultSet.next()) {
-                id = resultSet.getInt("id");
+                userLogin = new UserLogin();
+                userLogin.setId(resultSet.getInt("id"));
+                userLogin.setUserName(resultSet.getString("userName"));
+                userLogin.setFullName(resultSet.getString("fullName"));
+                userLogin.setPhone(resultSet.getString("phone"));
+                userLogin.setAddress(resultSet.getString("address"));
+//                userLogin.setCartId(resultSet.getInt("cart_id"));
+                userLogin.setRole(resultSet.getString("role"));
             }
-            userLogin = findById(id);
+
         } catch (Exception e) {
             e.printStackTrace();
             return null;
