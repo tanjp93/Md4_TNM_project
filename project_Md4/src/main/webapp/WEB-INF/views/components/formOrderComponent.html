@@ -9,28 +9,6 @@
 <body>
 <div th:fragment="orderFormComponent" class="order_container">
     <form action="#" method="post">
-<!--            <div class="order_CustomerDetail">-->
-<!--              <div style="text-align: center;">-->
-<!--                <h2 class="order_title">THÔNG TIN ĐẶT HÀNG</h2>-->
-<!--              </div>-->
-<!--              <div class="order_form-group">-->
-<!--                <label class="order_label" for="name">Họ và tên người đặt hàng:</label>-->
-<!--                <input hidden class="order_form-input" type="text" id="userId" name="userId" />-->
-<!--                <input class="order_form-input" type="text" id="name" name="name" required />-->
-<!--              </div>-->
-<!--              <div class="order_form-group">-->
-<!--                <label for="phone">Số điện thoại:</label>-->
-<!--                <input class="order_form-input" type="tel" id="phone" name="phone" required />-->
-<!--              </div>-->
-<!--              <div class="order_form-group">-->
-<!--                <label for="address">Địa chỉ giao hàng:</label>-->
-<!--                <textarea class="order_form-input" id="address" name="address" required></textarea>-->
-<!--              </div>-->
-<!--              <div class="order_form-group">-->
-<!--                <label for="date" style="margin-right: 10%;">Ngày đặt hàng:</label>-->
-<!--                <input type="date" style="margin-bottom:0.5rem;text-align: center; width: 30%; height: 2rem;" id="date" name="date" required />-->
-<!--              </div>-->
-<!--            </div>-->
         <h2 class="order_table_title">SẢN PHẨM</h2>
         <table class="order_table">
             <thead>
@@ -44,41 +22,32 @@
             </tr>
             </thead>
             <tbody>
-            <tr >
-                <td th:text="">STT</td>
-                <td><span th:text="${product.getProductName()}"></span></td>
-<!--                <td><img th:src="@{/product.getImg()/}"></td>-->
+            <tr th:each="orderDetail : ${orderDetailList}">
+                <td th:text="${orderDetail.getId()}"></td>
                 <td>
-                    <input class="order_inputNumber" type="number" name="quantity" id="inputQuantityShow" value="1" min="1" readonly/>
+                    <th:block th:each="pro:${session.listProduct}">
+                        <span th:if="${pro.getId()!=orderDetail.getProduct_id()?hidden:''}"
+                              th:text="${pro.getProductName()}"></span>
+                    </th:block>
                 </td>
-                <td><span th:text="${product.getPrice}"></span><sup> VND</sup></td>
+                <td width="15%">
+                    <th:block th:each="pro:${session.listProduct}">
+                        <img width="100%" th:if="${pro.getId()!=orderDetail.getProduct_id()?hidden:''}"
+                             th:src="${'/products/' + pro.getImg()}"/>
+                    </th:block>
+                </td>
                 <td>
-                    <a href="">
-                        <button type="button" onclick="orderQuantity()" class="btn btn-danger">Sửa</button>
+                    <input style="text-align: center" class="order_inputNumber" type="number" name="quantity"
+                           id="inputQuantityShow" th:value="${orderDetail.getQuantity()}"
+                           min="1" readonly/>
+                </td>
+                <td><span th:text="${orderDetail.getProduct_price()}"></span><sup> VND</sup><span>/đv </span></td>
+                <td>
+                    <a th:href="@{'/cartController/deleteOrderDetail/'+${orderDetail.getId()}}">
                         <button type="button" class="btn btn-danger">Xóa</button>
                     </a>
                 </td>
             </tr>
-<!--            <tr>-->
-<!--                <td>-->
-<!--                    <select class="order_form-input" id="status" name="status" required>-->
-<!--                        <option value="0"> -&#45;&#45;&#45;&#45;&#45;&#45; Chọn sản phẩm -&#45;&#45;&#45;&#45;&#45;&#45; </option>-->
-<!--                        <th:block th:each="pro:${listProduct}">-->
-<!--                            <option th:value="pro.getId()" th:text="${pro.getProductName()}"></option>-->
-<!--                        </th:block>-->
-<!--                    </select>-->
-<!--                </td>-->
-<!--                <td><input class="order_inputNumber" type="number" name="quantity" min="1" required/></td>-->
-<!--                <td><span th:text="${product.getPrice}"></span><sup> VND</sup></td>-->
-<!--                <td>-->
-<!--                    <a href="">-->
-<!--                        <button id="addProduct"  type="button" class="btn btn-warning">Thêm</button>-->
-<!--                    </a>-->
-<!--                    <a href="">-->
-<!--                        <button type="button" class="btn btn-danger">Xóa</button>-->
-<!--                    </a>-->
-<!--                </td>-->
-<!--            </tr>-->
             </tbody>
         </table>
         <div class="order_total">
@@ -97,19 +66,22 @@
           </select>
         </div> -->
         <div class="order_form-group order_form-submitBtn ">
-            <a href="">
+            <a th:href="@{/manageController/getAllProduct}">
                 <button type="button" class="btn btn-success">Thanh Toán</button>
             </a>
-            <a href="">
+            <a th:href="@{/manageController/getAllProduct}">
                 <button type="button" class="btn btn-info">Mua thêm</button>
             </a>
+        </div>
+        <div class="order_form-group order_form-submitBtn ">
+            <a th:href="@{/}" th:text="${'Trở về trang chủ'}"></a>
         </div>
     </form>
 </div>
 <script>
-    function orderQuantity(){
-        let orderQuantity=document.getElementById("inputQuantityShow");
-        orderQuantity.removeAttribute("readonly")
+    function orderQuantity() {
+        let orderQuantity = document.getElementById("inputQuantityShow");
+        orderQuantity.removeAttribute("readonly");
     }
 </script>
 </body>

@@ -151,4 +151,23 @@ public class OrderDetail_IMPL implements IOrderDetail_Service<OrderDetail> {
         }
         return orderDetail;
     }
+    public List<OrderDetail> findOrderDetailByOrderId(int orderId){
+        Connection conn = null;
+        List <OrderDetail> orderDetailList = new ArrayList<>();
+        try {
+            conn = ConnectionToDB.getConnectionToDB();
+            CallableStatement callableStatement = conn.prepareCall("{call PROC_ORDER_DETAIL_findOrderDetailByOrderId(?)}");
+            callableStatement.setInt(1, orderId);
+            ResultSet rs = callableStatement.executeQuery();
+            while (rs.next()) {
+              OrderDetail  orderDetail = createOrderDetail(rs);
+                orderDetailList.add(orderDetail);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionToDB.closeConnection(conn);
+        }
+        return orderDetailList;
+    }
 }

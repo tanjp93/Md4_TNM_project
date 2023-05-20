@@ -11,51 +11,70 @@ import ra.model.service.OrderDetail.OrderDetail_IMPL;
 import ra.model.service.orders.IOrdersService;
 import ra.model.service.orders.OrdersIMPL;
 import ra.model.service.product.ProductServiceIMPL;
-
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
+
 
 @Controller
 @RequestMapping("/cartController")
 public class TNM_CartController {
     ProductServiceIMPL productService = new ProductServiceIMPL();
-    IOrdersService ordersService= new OrdersIMPL();
-    IOrderDetail_Service orderDetailService=new OrderDetail_IMPL();
+    IOrdersService ordersService = new OrdersIMPL();
+    IOrderDetail_Service orderDetailService = new OrderDetail_IMPL();
+
     @PostMapping("/orderDetail")
-    public String create_oderDetail(@ModelAttribute("orderDetail")OrderDetail orderDetail, HttpSession session, Model model) throws SQLException {
+    public String create_oderDetail(@ModelAttribute("orderDetail") OrderDetail orderDetail, HttpSession session, Model model) {
         UserLogin userLogin= (UserLogin) session.getAttribute("userLogin");
-        Orders orders = ordersService.findOrdersTypeZero(userLogin.getId());
-        if (orders == null) {
-//            // TODO create
-//            // Insert
+       //create cart or add to cart
+        Orders orders= ordersService.findOrdersTypeZero(userLogin.getId());
+        if (orders==null){
+//            create cart
             ordersService.createCart(userLogin.getId());
-            int lastInsertOrderId = ordersService.getLastInsertOrderId();
-            orderDetailService.save(new OrderDetail(
-                    lastInsertOrderId,
-                    orderDetail.getProduct_id(),
-                    orderDetail.getProduct_price(),
-                    orderDetail.getQuantity()));
-        } else {
-            // TODO check exist --> true --> count +1
-            // --> false --> save
-            OrderDetail tempOrderDetail = orderDetailService.findOrderDetailByOrderIdAndProductId(orders.getId(), orderDetail.getProduct_id());
-            if (tempOrderDetail == null) {
-                orderDetailService.save(
-                        new OrderDetail(
-                        orders.getId(),
-                        orderDetail.getProduct_id(),
-                        orderDetail.getProduct_price(),
-                        orderDetail.getQuantity()));
-            } else {
-                int newQuantity = tempOrderDetail.getQuantity() + orderDetail.getQuantity();
-                tempOrderDetail.setQuantity(newQuantity);
+            orderDetail.setOrder_id(ordersService.getLastInsertOrderId());
+            try {
+                orderDetailService.save(orderDetail);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }else {
+            orderDetail.setOrder_id(orders.getId());
+            OrderDetail tempOrderDetail=orderDetailService.findOrderDetailByOrderIdAndProductId(orders.getId(), orderDetail.getProduct_id());
+            if (tempOrderDetail==null){
+                try {
+                    orderDetailService.save(orderDetail);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }else {
+                int quantity=tempOrderDetail.getQuantity()+orderDetail.getQuantity();
+                tempOrderDetail.setQuantity(quantity);
                 orderDetailService.update(tempOrderDetail);
             }
         }
-//        List<Orders>ordersList
-//        model.addAttribute("orderDetail",orderDetail);
-//        Orders orders=ordersService.findById();
+        Orders orders1=ordersService.findOrdersTypeZero(userLogin.getId());
+        List<OrderDetail> orderDetailList=orderDetailService.findOrderDetailByOrderId(orders1.getId());
+        model.addAttribute("orderDetailList",orderDetailList);
         return "/order";
+    }
+    @GetMapping("/UserLoginOrder")
+    public String toViewUserOrderDetail(HttpSession session,Model model){
+        showUserLoginOrderDetail(session, model);
+        return "/order";
+    }
+
+
+    @GetMapping("/deleteOrderDetail/{orderDetail_id}")
+    public String toDeleteOrderDetail(@PathVariable("orderDetail_id") String id,HttpSession session,Model model){
+        System.out.println("id delete >>>"+id);
+        orderDetailService.delete(Integer.parseInt(id));
+        showUserLoginOrderDetail(session, model);
+        return "/order";
+    }
+    private void showUserLoginOrderDetail(HttpSession session, Model model) {
+        UserLogin userLogin= (UserLogin) session.getAttribute("userLogin");
+        Orders orders1=ordersService.findOrdersTypeZero(userLogin.getId());
+        List<OrderDetail> orderDetailList=orderDetailService.findOrderDetailByOrderId(orders1.getId());
+        model.addAttribute("orderDetailList",orderDetailList);
     }
 }
